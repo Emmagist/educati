@@ -51,14 +51,26 @@
               </li>
 
               <li class="nav-item nav-item__has-dropdown">
-                <a class="nav-link " href="#" data-toggle="dropdown"> Information Zone
+                <a class="nav-link " href="#"> Information Zone
                 </a>
               </li>
 
               <li class="nav-item nav-item__has-megamenu">
-                <a class="nav-link " href="#" data-toggle="dropdown"> Contact Us
+                <a class="nav-link " href="#"> Contact Us
                 </a>
               </li>
+              <?php if($_SESSION['entity_guid']): ?>
+                <li class="nav-item nav-item__has-megamenu">
+                <a class="nav-link " href="student-profile.php"> My Dashboard
+                </a>
+              </li>
+              <?php else :?>
+                <li class="nav-item nav-item__has-megamenu">
+                <a class="nav-link " href="#"> 
+                </a>
+              </li>
+              <?php endif; ?>
+
           </ul>
         </div>
       </div>

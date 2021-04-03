@@ -29,11 +29,8 @@
        <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end bg-transparent">  
           <li class="breadcrumb-item">
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
           </li> 
-          <li class="breadcrumb-item">
-            <a href="#"> Elements</a>
-          </li>
           <li class="breadcrumb-item">
           Consulting And Adversory Services
           </li>
@@ -104,20 +101,17 @@
             
             <div class="row mt-5 mx-0">
               <div class="col-md-3 mb-4">
-                <input type="text" class="form-control" placeholder="Full Name" required>
+                <input type="text" class="form-control" placeholder="Full Name" required name="name">
               </div>
               <div class="col-md-3 mb-4">
-                <input type="email" class="form-control" placeholder="Email" required>
+                <input type="email" class="form-control" placeholder="Email" required name="email">
               </div>
               <div class="col-md-3 mb-4">
-                <input type="email" class="form-control" placeholder="Phone number">
-              </div>
-              <div class="col-md-3 mb-4">
-                <input type="email" class="form-control" placeholder="Subject">
+                <input type="subject" class="form-control" placeholder="Subject" name="subject">
               </div>
               <div class="col-12">
                 <textarea type="email" class="form-control" placeholder="Message" rows="7"></textarea>
-                <button type="submit" class="btn btn-primary mt-4">Send Message</button>
+                <button type="submit" class="btn btn-primary mt-4" name="message_button">Send Message</button>
               </div>
             </div>
             <p class="lead mt-4">

@@ -1,20 +1,19 @@
 <?php 
 
   require "libs/process.php";
+  $db->getLogin();
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
 
   if (isset($_SESSION['entity_guid'])) {
     $token = $_SESSION['entity_guid'];
-  }else{
-    unset($_SESSION["entity_guid"], $_SESSION["email"]);
-    session_destroy();
-    header("Location: index.php");
   }
   // echo $token;exit;
   $userInfos = $user->getAllUsers($token);
+  // var_dump($userInfos);exit;
 
+  
 ?>
 
 
@@ -42,9 +41,18 @@
         <div class="col-lg-4 mt-4">
           <div class="card shadow-v1">
             <div class="card-header text-center border-bottom pt-5 mb-4">
-             <img class="rounded-circle mb-4" src="<?= $userInfo['image']?$userInfo['image']:'assets/img/262x230/7.jpg'?>" width="200" height="200" alt="">
+             <img class="rounded-circle mb-4" src="<?php if($userInfo['file_upload']):
+             echo $userInfo['file_upload']?>
+             <?php else : echo 'assets/img/262x230/7.jpg'?>
+             <?php endif ?>" width="200" height="200" alt="">
+             <!-- <form action="" method="post">
+                <label for="">Upload A Profile Image</label>
+                <input type="file" name="upload_file" id="" class="mb-4 ml-5">
+                <input type="hidden" value="<?//php $token;?>" name="token">
+                <button type="submit" name="upload_profile_button">Upload</button>
+             </form> -->
              <h4>
-               <?=ucword($userInfo['full_name']);?>
+               <?=ucwords($userInfo['surname']) . ' ' . ucwords($userInfo['surname']); //echo '#'.mt_rand(10000000, 99999999);exit;?>
              </h4>
               <!-- <p>
                 Love to eat food
@@ -66,7 +74,7 @@
               <ul class="list-unstyled">
                 <li class="mb-3">
                   <span class="d-block">Email address:</span>
-                  <b><?=ucword($userInfo['full_name']);?></b>
+                  <b><?=$userInfo['email'];?></b>
                 </li>
                 <!-- <li class="mb-3">
                   <span class="d-block">Phone:</span>
@@ -137,46 +145,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row" class="text-dark font-weight-semiBold">#00004673</th>
-                      <td>01 Aug 2018</td>
-                      <td>$49</td>
-                      <td>
-                        <a href="#" class="btn btn-link">View</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="text-dark font-weight-semiBold">#05604673</th>
-                      <td>07 Aug 2018</td>
-                      <td>$300</td>
-                      <td>
-                        <a href="#" class="btn btn-link">View</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="text-dark font-weight-semiBold">#07O4673</th>
-                      <td>16 Aug 2018</td>
-                      <td>$34</td>
-                      <td>
-                        <a href="#" class="btn btn-link">View</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="text-dark font-weight-semiBold">#06454673</th>
-                      <td>24 Aug 2018</td>
-                      <td>$10</td>
-                      <td>
-                        <a href="#" class="btn btn-link">View</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="text-dark font-weight-semiBold">#0000435</th>
-                      <td>28 Aug 2018</td>
-                      <td>$199</td>
-                      <td>
-                        <a href="#" class="btn btn-link">View</a>
-                      </td>
-                    </tr>
+                    <?php if($user->purchasedCourse($token)) :
+                      foreach($user->purchasedCourse($token) as $purchasedCourse) : ?>
+                      <tr>
+                        <th scope="row" class="text-dark font-weight-semiBold"><?=$purchasedCourse['order_id'];?></th>
+                        <td>01 Aug 2018 <?=$db->dateFormat($purchasedCourse['xdate']);?></td>
+                        <td>#<?=$purchasedCourse['price'];?></td>
+                        <td>
+                          <a href="#" class="btn btn-link">View</a>
+                        </td>
+                      </tr>
+                    <?php endforeach; endif; ?>
                   </tbody>
                 </table>
               </div>

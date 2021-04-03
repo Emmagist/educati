@@ -13,8 +13,8 @@
       <div class="col-lg-6 mx-auto">
         <div class="card shadow-v2"> 
          <div class="card-header border-bottom">
-          <h4 class="mt-4">
-            Log In to Your EchoTheme Account!
+          <h4 class="mt-4 text-center">
+            Log In to Your Account!
           </h4>
          </div>         
           <div class="card-body">

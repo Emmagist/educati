@@ -33,7 +33,6 @@
 
         if ($user->findUserByEmail($email)) {
             $errors['email-exist'] = "Email already exist";
-            header("Location:signup.php");
         }
 
         // if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
@@ -63,14 +62,14 @@
         }
 
         if (empty($errors)) {
-            if ($emailCheck == $email) {
+            if ($emailCheck) {
               foreach ($emailCheck as $userInfo) {
                 $_SESSION['email'] = $userInfo['email'];
                 $_SESSION['entity_guid'] = $userInfo['entity_guid'];
                 if (password_verify($password, $userInfo['password'])) {
-                    $_SESSION['email']; $_SESSION['entity_guid'];
+                    $_SESSION['email']; $_SESSION['entity_guid']; $db->set('login', true);
                     $_SESSION['success-message'] = "You are now lodged in";
-                    header("Location: index.php");
+                    header("Location: student-profile.php");
                 }else {
                     $errors['page-error'] = "Email or password not found !";
                 }
@@ -130,5 +129,47 @@
             header("Location: login.php");
         }
     }
+
+    // if (isset($_POST['upload_profile_button'])) {
+    //     $token = $_POST['token'];
+    //     $upload_student_img = $_FILES['upload_file'];
+
+    //      // File upload
+    //      $target_dir = "upload_student_img/";
+    //      $target_file  = $target_dir . basename($_FILES["upload_file"]["name"]);
+    //      $uploadOk = 1;
+    //      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    //      $check = getimagesize($_FILES["upload_file"]["tmp_name"]);
+    //      if($check == false) {
+    //          $error =  "File is not an image";
+    //          $uploadOk = 0;
+    //      }
+ 
+    //      if (file_exists($target_file)) {
+    //          $error = "Sorry, file already exists.";
+    //          $uploadOk = 0;
+    //      }
+ 
+    //      if ($_FILES["fileToUpload"]["size"] > 500000) {
+    //          $error = "Sorry, your file is too large.";
+    //          $uploadOk = 0;
+    //      }
+ 
+    //      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+    //          $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    //          $uploadOk = 0;
+    //      }
+ 
+    //      if ($uploadOk == 0) {
+    //          echo "Sorry, your file was not uploaded.";
+    //      }else {
+    //          (move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file));
+    //          $_SESSION['success-message'] = "Profie uploaded successfully";
+    //      }
+         
+    //      if ($uploadOk == 1) {
+    //          $db->update(TBL_SYSTEM_USERS, "image = ' $target_file'", "entity_guid = $token");
+    //      }
+    // }
 
 ?>
