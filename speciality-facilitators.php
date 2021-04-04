@@ -1,8 +1,14 @@
 <?php 
 
-    require "inc/head.php";
-    require "inc/header.php";
-    require "inc/nav.php";
+  require "libs/process.php";
+  $db->getLogin();
+  require "inc/head.php";
+  require "inc/header.php";
+  require "inc/nav.php";
+
+  if (isset($_SESSION['entity_guid'])) {
+    $token = $_SESSION['entity_guid'];
+  }
 
  ?>
    
@@ -15,7 +21,7 @@
        <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end bg-transparent">  
           <li class="breadcrumb-item">
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
           </li> 
           <li class="breadcrumb-item">
           Specialist Facilitators
@@ -69,30 +75,26 @@
           <p>Want more information about our onsite/in-house training courses?</p>
         </div>
         <div class="col- text-center">
-          <form action="#" method="POST" class="card p-4 p-md-5 shadow-v1">
-            
+          <form action="" method="POST" class="card p-4 p-md-5 shadow-v1">
             <div class=" mt-5 mx-0">
+              <?php require "inc/error_message.php";?>
+              <?php require "inc/session_message.php";?>
               <div class="col-md- mb-4 form-group">
-                <input type="text" class="form-control" placeholder="Full Name" required>
+                <input type="text" class="form-control" placeholder="Full Name" required name="name">
+                <input type="hidden" value="<?=$token?>" name="token">
               </div>
               <div class="col-md- mb-4 form-group">
-                <input type="email" class="form-control" placeholder="Company" required>
+                <input type="email" class="form-control" placeholder="Email" required name="email">
               </div>
               <div class="col-md- mb-4 form-group">
-                <input type="email" class="form-control" placeholder="Email" required>
+                <input type="text" class="form-control" placeholder="Type of Training" name="training_type">
               </div>
               <div class="col-md- mb-4 form-group">
-                <input type="email" class="form-control" placeholder="Phone number">
-              </div>
-              <div class="col-md- mb-4 form-group">
-                <input type="email" class="form-control" placeholder="Type of Training">
-              </div>
-              <div class="col-md- mb-4 form-group">
-                <input type="email" class="form-control" placeholder="Training Methodology">
+                <input type="text" class="form-control" placeholder="Training Methodology" name="training_methodology">
               </div>
               <div class="col- form-group">
-                <textarea type="text" class="form-control" placeholder="Your Message" rows=""></textarea>
-                <button type="submit" class="btn btn-primary mt-4">Send Message</button>
+                <textarea type="text" class="form-control" placeholder="Your Message not more than 250 words" rows="" name="message"></textarea>
+                <button type="submit" class="btn btn-primary mt-4" name="training_methodology_button">Send Message</button>
               </div>
             </div>
             <p class="lead mt-4">

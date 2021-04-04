@@ -6,11 +6,6 @@
 
 ?>
 
-  
-
-
-   
-   
  <div class="py-5 bg-light-v2">
   <div class="container">
    <div class="row align-items-center">
@@ -253,7 +248,7 @@
                 <i class="ti-angle-down"></i>
                 <i class="ti-angle-up"></i>
               </span>
-              Enquiries & for More Information 	 
+              Enquiries & More Information 	 
              </a>
               <div id="acc7_4" class="collapse" data-parent="#accordion-7">
                 <div class="px-4">

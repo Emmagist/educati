@@ -5,6 +5,8 @@
   require "inc/header.php";
   require "inc/nav.php";
 
+  foreach($user->getAllCourses() as $allCourses){}
+
 ?>
 
 <section class="padding-y-150 flex-center jarallax" data-dark-overlay="5" style="background:url(assets/img/1920x800/5.jpg)">
@@ -18,7 +20,7 @@
           Advance Your Career.
         </h1>
         <p class="lead wow slideInUp">
-          <span class="text-primary font-weight-semiBold">6,178</span> courses in Business, Technology and Creative Skills taught by industry experts.
+          <span class="text-primary font-weight-semiBold"><?php $count = $allCourses['id']; echo $count++; ?></span> courses in Business, Technology and Creative Skills taught by industry experts.
         </p>
         <!-- <a href="#" class="btn btn-primary mt-3 wow slideInUp">Start Free Trial</a>
         <a href="#" class="btn btn-outline-white mt-3 ml-sm-3 wow slideInUp">Become an Instructor</a> -->
@@ -56,8 +58,8 @@
             <?php foreach($user->allClasses() as $randomClass) : ?>
               <div class="col-lg-4 col-md-6 marginTop-30">
                 <div class="card text-gray overflow-hidden height-100p shadow-v1">
-                <span class="ribbon-badge font-size-sm bg-success text-white">Best selling</span>
-                  <img class="card-img-top" src="assets/img/360x220/1.jpg" alt="">
+                <!-- <span class="ribbon-badge font-size-sm bg-success text-white">Best selling</span> -->
+                  <img class="card-img-top" src="<?=$randomClass['image'];?>" alt="">
                   <div class="card-body">
                     <a href="course-details.php?clid=<?=$randomClass['id'];?>" class="h5">
                       <?=$randomClass['class'];?>

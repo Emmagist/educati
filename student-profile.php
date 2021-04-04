@@ -61,7 +61,8 @@
                 <li class="list-inline-item m-2">
                   <i class="ti-shopping-cart text-primary"></i>
                   <span class="d-block">Courses Order</span>
-                  <span class="h6">35</span>
+                  <?php foreach($user->purchasedCourse($token) as $purchasedCourse) {} ?>
+                  <span class="h6"><?php $count = $purchasedCourse['id']; echo $count++; ?></span>
                 </li>
                 <li class="list-inline-item m-2">
                   <i class="ti-heart text-primary"></i>

@@ -13,6 +13,10 @@
   if (isset($_GET['cliid'])) {
     $id = $_GET['cliid'];
   }
+  foreach($user->getAllCourses() as $allCourses){
+
+  }
+
 
 ?>
 
@@ -20,18 +24,18 @@
   <div class="container">
    <div class="row align-items-center">
      <div class="col-lg-6 my-2 text-white">
-     <?php foreach($user->getSchoolsById($id) as $school) : ?>
-        <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><?=$school['school'];?></li>
-        </ol>
-        <h2 class="h1">
-          <?=$school['school'];?>
-        </h2>
-      <?php endforeach; ?>
-      <p class="lead">
-        <span class="text-primary">6,178</span> courses found
-      </p>
+        <?php foreach($user->getSchoolsById($id) as $school) : ?>
+          <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><?=$school['school'];?></li>
+          </ol>
+          <h2 class="h1">
+            <?=$school['school'];?>
+          </h2>
+          <p class="lead">
+              <span class="text-primary"><?php $count = $allCourses['id']; echo $count++; ?></span> courses found
+          </p>
+        <?php endforeach; ?>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
         <div class="input-group bg-white rounded p-1">
@@ -81,7 +85,7 @@
           <option>24</option>
         </select> 
         <div class="d-flex rounded border ml-3 px-2 my-2">
-          <a href="page-sp-all-courcess.html" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
+          <a href="courses-list.php" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
           <a href="page-sp-all-courcess-list.html" class="active btn px-1"><ti class="ti-view-list"></ti></a>
         </div>
        </div>
@@ -95,10 +99,10 @@
 
 <section class="paddingTop-50 paddingBottom-100 bg-light-v2">
   <div class="container">
-    <?php foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
+    <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($school['schoolid']) as $allClasses) : ?>
     <div class="list-card align-items-center shadow-v1 marginTop-30">
       <div class="col-lg-4 px-lg-4 my-4">
-        <img class="w-100" src="assets/img/360x220/1.jpg" alt="">
+        <img class="w-100" src="<?=$allClasses['image'];?>" alt="">
       </div>
       <div class="col-lg-8 paddingRight-30 my-4">
        <div class="media justify-content-between">
@@ -151,7 +155,7 @@
        </div>
       </div>
     </div>
-    <?php endforeach; ?>
+    <?php endforeach; endif; ?>
 <!--     
     <div class="list-card align-items-center shadow-v1 marginTop-30">
       <div class="col-lg-4 px-lg-4 my-4">

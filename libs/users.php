@@ -74,6 +74,43 @@
             global $db;
             return $db->selectData(TBL_TOPIC, "*", "class_id = '$id'");
         }
+
+        public  function  getAllContentByJoin($id){
+            global  $db;
+            $rows = [];
+            $result = $db->query("SELECT * FROM ada_contents
+                                    INNER JOIN ada_topics
+                                    ON ada_contents.subject = ada_topics.topic_id
+                                    INNER JOIN classes 
+                                    ON ada_topics.class_id = classes.id  
+                                    WHERE ada_contents.class_id = '$id'");
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
+
+        public function getAllCourses(){
+            global $db;
+            return $db->selectData(TBL_CLASS, "*");
+        }
+
+        public  function  getAllTrainingSolutionCourses(){
+            global  $db;
+            $rows = [];
+            $result = $db->query("SELECT * FROM classes
+                                    INNER JOIN schools
+                                    ON classes.schoolid = schools.schoolid
+                                    WHERE schools.school = 'Training Solution'");
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
     }
     $user = new Users;
 

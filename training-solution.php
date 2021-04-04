@@ -1,9 +1,16 @@
 <?php 
 
+  require "libs/process.php";
+  $db->getLogin();
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
 
+  if (isset($_SESSION['entity_guid'])) {
+    $token = $_SESSION['entity_guid'];
+  }
+
+  foreach($user->getAllCourses() as $allCourses){}
 ?>
 
 <div class="padding-y-60 bg-cover" data-dark-overlay="6" style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
@@ -11,15 +18,14 @@
    <div class="row align-items-center">
      <div class="col-lg-6 my-2 text-white">
       <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Courses</a></li>
-        <li class="breadcrumb-item">All Courses</li>
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <li class="breadcrumb-item">Training Solution</li>
       </ol>
       <h2 class="h1">
-        All Courses Gird
+        Training Solution Courses
       </h2>
       <p>
-        6,178 courses found
+      <?php $count = $allCourses['id']; echo $count++; ?> courses found
       </p>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
@@ -36,32 +42,6 @@
    </div>
   </div>
 </div>
-    
-    
-
-
-
-<!-- 
-<section class="py-3 position-relative shadow-v2">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 my-2">
-          Showing 1-9 of 24 results        
-      </div>
-      <div class="col-md-6 my-2 text-md-right">
-       <div class="d-inline-flex justify-md-content-end">
-        <div class="d-flex rounded border ml-3 px-2 my-2">
-          <a href="#" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
-          <a href="#" class="active btn px-1"><ti class="ti-view-list"></ti></a>
-        </div>
-       </div>
-      </div>
-    </div> END row
-  </div> END container
-</section> -->
-
-
-
 
 <section class="paddingTop-50 paddingBottom-100 bg-light">
   <div class="container">
@@ -114,89 +94,19 @@
      </aside> END col-lg-3 -->
      <div class="col-lg-12 order-1 order-lg-2">
        <div class="row">
+       <?php foreach($user->getAllTrainingSolutionCourses() as $solutionCourses) : ?>
           <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/2.jpg" alt="">
+            <div href="course-details.php?clid=<?=$solutionCourses['id']?>" class="card text-gray shadow-v1">
+              <img class="card-img-top" src="<?=$solutionCourses['image']?>" alt="">
               <div class="card-body">
-              <!-- <span class="badge position-absolute top-0 bg-success text-white" data-offset-top="-13">
-                Best selling
-              </span> -->
-                <a href="#" class="h5">
-                  Online and Blended Training
+                <a href="course-details.php?clid=<?=$solutionCourses['id']?>" class="h5">
+                <?=$solutionCourses['class']?>
                 </a>
               </div>
             </div>
           </div>
+          <?php endforeach; ?>
           
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/1.jpg" alt="">
-              <div class="card-body">
-              <!-- <span class="badge position-absolute top-0 bg-danger text-white" data-offset-top="-13">
-                Trending
-              </span> -->
-                <a href="corperate-training.php" class="h5">
-                  Corporate Training
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/3.jpg" alt="">
-              <div class="card-body">
-                <a href="employability-skills.php" class="h5">
-                  Employability Skills Training
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/4.jpg" alt="">
-              <div class="card-body">
-                <a href="graduate-training-scheme.php" class="h5">
-                  Graduate Training Scheme
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/5.jpg" alt="">
-              <div class="card-body">
-                <a href="individual-training.php" class="h5">
-                  Individual Training
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/6.jpg" alt="">
-              <div class="card-body">
-                <a href="#" class="h5">
-                  Career Change Training Scheme
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 marginTop-30">
-            <div href="page-course-details.html" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="assets/img/360x220/onsite.jfif" alt="">
-              <div class="card-body">
-                <a href="Onsite.php" class="h5">
-                  Onsite/In-Plant or Customised Training
-                </a>
-              </div>
-            </div>
-          </div>
-        
-      
         <!-- <div class="col-12 marginTop-70">
           <ul class="pagination pagination-primary justify-content-center">
             <li class="page-item mx-1">
@@ -286,32 +196,28 @@
           <div class="width-4rem height-4 bg-primary my-2 mx-auto rounded mb-3"></div>
         </div>
         <div class="col- text-center">
-          <form action="#" method="POST" class="card p-4 p-md-5 shadow-v1">
-            
+          <form action="" method="POST" class="card p-4 p-md-5 shadow-v1">
             <div class=" mt-3 mx-0">
+              <?php require "inc/error_message.php";?>
+              <?php require "inc/session_message.php";?>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Full Name" required>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Company Name" required>
+                <input type="text" class="form-control" placeholder="Full Name" required name="name">
+                <input type="hidden" name="token" value="<?=$token?>">
               </div>
               <div class=" form-group">
-                <input type="email" class="form-control" placeholder="Email" required>
+                <input type="email" class="form-control" placeholder="Email" required name="email">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Occupation">
+                <input type="text" class="form-control" placeholder="Region" required name="region">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Region">
+                <input type="text" class="form-control" placeholder="How did you hear about us?" required name="about_us">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="How did you hear about us?">
+              <!-- Email Updates: <input type="checkbox" class="ml-3" name="check_yes">Yes please <input type="checkbox" class="ml-3" name="check_no">No thanks -->
               </div>
               <div class="form-group">
-              Email Updates: <input type="checkbox" name="" id="" class="ml-3">Yes please <input type="checkbox" name="" id="" class="ml-3">No thanks
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary mt-4 form-control">Submit</button>
+                <button type="submit" class="btn btn-primary mt-4 form-control" name="download_catalogue_button">Submit</button>
               </div>
             </div>
             <p class="lead mt-4">
@@ -341,7 +247,7 @@
             <li class="mb-2"><a href="#">Marketing</a></li>
           </ul>
         </div>
-        <div class="card shadow-v2 marginTop-30">
+        <!-- <div class="card shadow-v2 marginTop-30">
           <h4 class="card-header bg-primary text-white mb-0">Filter By</h4>
           <ul class="card-body list-unstyled mb-0">
             <li class="mb-2"><a href="#">All Courses</a></li>
@@ -371,7 +277,7 @@
             </p>
             <a href="#" class="btn btn-white">Join Now</a>
           </div>
-        </div>
+        </div> -->
       </aside> <!--END col-lg-3 -->
       <div class="col-lg-9 order-1 order-lg-2">
         <h2 class="text-center">Specialized Short courses</h2>

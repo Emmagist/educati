@@ -56,7 +56,7 @@
               </li>
 
               <li class="nav-item nav-item__has-megamenu">
-                <a class="nav-link " href="#"> Contact Us
+                <a class="nav-link " href="contact.php"> Contact Us
                 </a>
               </li>
               <?php if($_SESSION['entity_guid']): ?>

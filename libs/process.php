@@ -172,4 +172,124 @@
     //      }
     // }
 
+    if (isset($_POST['download_catalogue_button'])) {
+        $name         = $db->escape($_POST['name']);
+        $email        = $db->escape($_POST['email']);
+        $region       = $db->escape($_POST['region']);
+        $token        = $db->escape($_POST['token']);
+        $about_us     = $db->escape($_POST['about_us']);
+        // $checkbox_yes = $db->escape($_POST['check_yes']);
+        // $checkbox_no  = $db->escape($_POST['check_no']);
+        $date         = date('yy/m/d');
+
+        if (empty($name)) {
+            $errors['name']     = "Enter your full name";
+        }
+        if (empty($email)) {
+            $errors['email']    = "Enter your email address";
+        }
+        if (empty($region)) {
+            $errors['region']   = "Enter your region";
+        }
+        if (empty($about_us)) {
+            $errors['about-us'] = "How did you hear about us?";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_CATALOGUE, "full_name = '$name', email = '$email', entity_guid = '$token', region = '$region', about_us = '$about_us', email_update = '', xdate = '$date'");
+            $_SESSION['success-message'] = "You can now download our online catalogue";
+        }
+    }
+
+    if (isset($_POST['training_methodology_button'])) {
+        $name                 = $db->escape($_POST['name']);
+        $email                = $db->escape($_POST['email']);
+        $training_type        = $db->escape($_POST['training_type']);
+        $token                = $db->escape($_POST['token']);
+        $training_methodology = $db->escape($_POST['training_methodology']);
+        $message              = $db->escape($_POST['message']);
+        $date                 = date('yy/m/d');
+
+        if (empty($name)) {
+            $errors['name']                 = "Enter your full name";
+        }
+        if (empty($email)) {
+            $errors['email']                = "Enter your email address";
+        }
+        if (empty($training_type)) {
+            $errors['training_type']        = "Enter type of training";
+        }
+        if (empty($training_methodology)) {
+            $errors['training_methodology'] = "Enter training methodology";
+        }
+        if (empty($message)) {
+           $errors['message']               = "Please leave a message";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', entity_guid = '$token', training_type = '$training_type', training_methodology = '$training_methodology', message = '$message', subject = '', xdate = '$date'");
+        }
+    }
+
+    if (isset($_POST['message_button'])) {
+        $name    = $db->escape($_POST['name']);
+        $email   = $db->escape($_POST['email']);
+        $token   = $db->escape($_POST['token']);
+        $subject = $db->escape($_POST['subject']);
+        $message = $db->escape($_POST['message']);
+        $date    = date('yy/m/d');
+
+        if (empty($name)) {
+            $errors['name']    = "Enter your full name";
+        }
+        if (empty($email)) {
+            $errors['email']   = "Enter your email address";
+        }
+        if (empty($subject)) {
+            $errors['subject'] = "Enter a message subject";
+        }
+        if (empty($message)) {
+           $errors['message']  = "Please leave a message";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', entity_guid = '$token', training_type = '', training_methodology = '', message = '$message', subject = '$subject', xdate = '$date'");
+        }
+    }
+
+    if (isset($_POST['contact_button'])) {
+        $name    = $db->escape($_POST['name']);
+        $email   = $db->escape($_POST['email']);
+        $message = $db->escape($_POST['message']);
+        $date    = date('yy/m/d');
+
+        if (empty($name)) {
+            $errors['name']    = "Enter your full name";
+        }
+        if (empty($email)) {
+            $errors['email']   = "Enter your email address";
+        }
+        if (empty($message)) {
+            $errors['message']  = "Please leave a message";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_CONTACT, "full_name = '$name', email = '$email', message = '$message', xdate = '$date', status = ''");
+        }
+    }
+
+    if (isset($_POST['subscribe_button'])) {
+        $email   = $db->escape($_POST['email']);
+        $date    = date('yy/m/d');
+
+        if (empty($email)) {
+            $errors['email']   = "Enter your email address to subscribe";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_CONTACT, "full_name = '', email = '$email', message = '', xdate = '$date', status = 'subscriber'");
+        }
+    }
+    
+
 ?>

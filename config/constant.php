@@ -17,6 +17,9 @@
     define("TBL_CLASS",            "classes");
     define("TBL_SCHOOL",           "schools");
     define("TBL_TOPIC",            "ada_topics");
-    define("CONTENTS",             "ada_contents");
+    define("TBL_CONTENTS",         "ada_contents");
+    define("TBL_CATALOGUE",        "download_training_catalogue");
+    define("TBL_MESSAGE",          "message_us");
+    define("TBL_CONTACT",          "subscribe_contact");
 
 ?>
