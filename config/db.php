@@ -121,7 +121,8 @@
 
         public function dateFormat($date){
             $timestamp = strtotime($date);
-            return date('d-m-Y', $timestamp);
+            // $timestamp = preg_replace('-', ' ', $timestamp);
+            return date('d m Y', $timestamp);
         }
 
         public function selectRandLimit($table, $field = '*', $conditions = "", $limit = ""){

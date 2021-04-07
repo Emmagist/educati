@@ -47,7 +47,20 @@
 
         public function courseDetails($id){
             global $db;
-            return $db->selectData(TBL_CLASS, "*", "id = '$id'");
+            $rows = [];
+            $result = $db->query("SELECT * FROM classes 
+                                    INNER JOIN ada_topics
+                                    ON classes.id = ada_topics.class_id
+                                    INNER JOIN ada_contents 
+                                    ON ada_topics.class_id = ada_contents.class_id  
+                                    WHERE classes.id = '$id'");
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+            }
+            // return $db->selectData(TBL_CLASS, "*", "id = '$id'");
         }
 
         public function getAllSchoolsLimited(){
@@ -110,6 +123,11 @@
                 }
                 return $rows;
             }
+        }
+
+        public function getPurchasedItemsById($id){
+            global $db;
+            return $db->selectData(TBL_PURCHASED_COURSE, "*", "id = '$id'");
         }
     }
     $user = new Users;

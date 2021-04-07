@@ -14,10 +14,6 @@
         
         <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
           <ul class="nav navbar-nav ec-nav__navbar ml-auto">
-
-              <li class="nav-item nav-item__has-megamenu megamenu-col-2">
-                <a class="nav-link" href="index.php" >Home</a>
-              </li>
               <li class="nav-item nav-item__has-dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">About</a>
                 <div class="dropdown-menu">
@@ -59,6 +55,12 @@
                 <a class="nav-link " href="contact.php"> Contact Us
                 </a>
               </li>
+              <li class="nav-item nav-item__has-dropdown">
+                <a class="nav-link" href="shop.php"> Shop </a>
+              </li>
+              <li class="nav-item nav-item__has-dropdown">
+                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart"></i></a>
+              </li>
               <?php if($_SESSION['entity_guid']): ?>
                 <li class="nav-item nav-item__has-megamenu">
                 <a class="nav-link " href="student-profile.php"> My Dashboard
@@ -70,7 +72,6 @@
                 </a>
               </li>
               <?php endif; ?>
-
           </ul>
         </div>
       </div>

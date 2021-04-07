@@ -72,6 +72,7 @@
                     header("Location: student-profile.php");
                 }else {
                     $errors['page-error'] = "Email or password not found !";
+                    header("Location: login.php");
                 }
               }
             }else {
@@ -291,5 +292,19 @@
         }
     }
     
+    if (isset($_POST['add_to_cart_button'])) {
+        if (isset($_SESSION['entity_guid'])) {
+            $name = $db->escape($_POST['name']);
+            $price = $db->escape($_POST['price']);
+            $shop_id = $db->escape($_POST['shop_id']);
+            $image = $db->escape($_POST['image']);
+            $token = $db->escape($_POST['token']);
+            $date = date('yy-m-d');
+
+            $db->saveData(TBL_CART, "entity_guid = '$token', class_id = '$shop_id', class = '$name', price = '$price', image = '$image', xdate='$date'");
+        }else{
+            header("Location: login.php");
+        }
+    }
 
 ?>

@@ -150,10 +150,10 @@
                       foreach($user->purchasedCourse($token) as $purchasedCourse) : ?>
                       <tr>
                         <th scope="row" class="text-dark font-weight-semiBold"><?=$purchasedCourse['order_id'];?></th>
-                        <td>01 Aug 2018 <?=$db->dateFormat($purchasedCourse['xdate']);?></td>
+                        <td><?=$db->dateFormat($purchasedCourse['xdate']);?></td>
                         <td>#<?=$purchasedCourse['price'];?></td>
                         <td>
-                          <a href="#" class="btn btn-link">View</a>
+                          <a href="order-detail.php?ord=<?=$purchasedCourse['id'];?>" class="btn btn-link">View</a>
                         </td>
                       </tr>
                     <?php endforeach; endif; ?>

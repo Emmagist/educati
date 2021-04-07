@@ -26,7 +26,7 @@
      <div class="col-lg-6 my-2 text-white">
         <?php foreach($user->getSchoolsById($id) as $school) : ?>
           <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item"><?=$school['school'];?></li>
           </ol>
           <h2 class="h1">
@@ -99,7 +99,7 @@
 
 <section class="paddingTop-50 paddingBottom-100 bg-light-v2">
   <div class="container">
-    <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($school['schoolid']) as $allClasses) : ?>
+    <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
     <div class="list-card align-items-center shadow-v1 marginTop-30">
       <div class="col-lg-4 px-lg-4 my-4">
         <img class="w-100" src="<?=$allClasses['image'];?>" alt="">
@@ -508,7 +508,7 @@
     </div> -->
     
     
-    <div class="row">
+    <!--<div class="row">
       <div class="col-12 marginTop-70">
         <ul class="pagination pagination-primary justify-content-center">
           <li class="page-item mx-1">
@@ -540,7 +540,7 @@
           </li>
         </ul>
       </div>
-    </div> <!-- END row-->
+    </div>  END row-->
   </div> <!-- END container-->
 </section>
    

@@ -6,13 +6,15 @@
   require "inc/header.php";
   require "inc/nav.php";
 
-  if (isset($_SESSION['entity_guid'])) {
-    $token = $_SESSION['entity_guid'];
-  }
+  // if (isset($_SESSION['entity_guid'])) {
+  //   $token = $_SESSION['entity_guid'];
+  // }
 
   if (isset($_GET['clid'])) {
     $id = $_GET['clid'];
   }
+
+  // var_dump($user->courseDetails($id));exit;
 
 ?>
 
@@ -23,12 +25,11 @@
    <div class="row align-items-center">
      <div class="col-lg-6 my-2 text-white">
       <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Courses</a></li>
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item">Details</li>
       </ol>
       <h2 class="h1">
-        Course Details
+        Courses Details
       </h2>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
@@ -49,7 +50,7 @@
     
   
 
-<!-- <section class="py-3">
+<!--<section class="py-3">
   <div class="container">
     <div class="row">
       <div class="col-12 z-index-10" data-offset-top-md="-40">
@@ -78,9 +79,9 @@
         </ul>
         <a href="#" class="btn btn-white iconbox"><i class="ti-heart"></i></a>
       </div>
-   </div> <!-- END row-->
-  <!-- </div> -->
-<!--</section> -->
+   </div> END row
+  </div>
+</section>-->
 
 
 <section class="paddingBottom-100">
@@ -88,175 +89,116 @@
   
    <div class="row">
       <div class="col-lg-9 marginTop-30">
-        <?php if($user->courseDetails($id)) :
+        <?php if($user->courseDetails($id)) : 
           foreach ($user->courseDetails($id) as $courseDetails) : ?>
-            <h1>
-              <?=$courseDetails['class'];?>
-            </h1>
-            <div class="row mt-3">
-              <div class="col-lg-3 col-md-6 my-2">
-                <div class="media border-right height-100p">
-                  <img class="iconbox mr-3" src="<?php if($courseDetails['image']) :
-                  echo $courseDetails['image']; ?>
-                  <?php else : ?>
-                    assets/img/avatar/user-avatar.png
-                    <?php endif; ?>" alt="">
-                  <div class="media-body">
-                    <span class="text-gray d-block">Instructor:</span>
-                    <a href="#" class="h6">John Richi</a>
-                  </div>
+          <h1>
+            <?=$courseDetails['class'];?>
+          </h1>
+          <div class="row mt-3">
+            <!-- <div class="col-lg-3 col-md-6 my-2">
+              <div class="media border-right height-100p">
+                <img class="iconbox mr-3" src="assets/img/avatar/4.jpg" alt="">
+                <div class="media-body">
+                  <span class="text-gray d-block">Instructor:</span>
+                  <a href="#" class="h6">John Richi</a>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6 my-2">
-                <div class="border-right height-100p">
-                  <span class="text-gray d-block">Categories:</span>
-                  <a href="#" class="h6"><?=$courseDetails['class'];?></a>
-                </div>
-              </div>
-              <!-- <div class="col-lg-3 col-md-6 my-2">
-                <div class="border-right height-100p">
-                  <span class="text-gray">Reviews:</span>
-                  <p class="mb-0">
-                    <i class="fas fa-star text-warning small"></i>
-                    <i class="fas fa-star text-warning small"></i>
-                    <i class="fas fa-star text-warning small"></i>
-                    <i class="fas fa-star text-warning small"></i>
-                    <i class="fas fa-star-half small"></i>
-                    <span class="text-dark">4.9</span>
-                    <span>(793)</span>
-                  </p>
-                </div>
-              </div> -->
-              <div class="col-lg-3 col-md-6 my-2">
-                <div class="text-md-right height-100p">
-                  <h2 class="font-weight-bold text-primary mb-2">#<?=$courseDetails['price'];?></h2>
-                  <a class="btn btn-primary" href="#">Buy Course</a>
-                </div>
-              </div>
-            </div> <!-- END row-->
-        <?php endforeach; endif;?>
-            
-            <div class="ec-video-container my-4 mt-5">
-              <iframe src="https://www.youtube.com/embed/QYen7jzNw7s"></iframe>
-            </div>
-            <!-- <div class="card padding-30 shadow-v3">
-              <h4>
-                Features Includes:
-              </h4>
-              <ul class="list-inline mb-0 mt-2">
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-headphone small text-primary"></i>
-                  <span class="ml-2">246 lectures</span>
-                </li>
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-time small text-primary"></i>
-                  <span class="ml-2">27.5 Hours</span>
-                </li>
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-user small text-primary"></i>
-                  <span class="ml-2">98,250 students entrolled</span>
-                </li>
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-reload small text-primary"></i>
-                  <span class="ml-2">Lifetime access</span>
-                </li>
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-crown small text-primary"></i>
-                  <span class="ml-2">Certificate of Completion</span>
-                </li>
-                <li class="list-inline-item my-2 pr-md-4">
-                  <i class="ti-crown small text-primary"></i>
-                  <span class="ml-2">30-Day Money-Back Guarantee of Completion</span>
-                </li>
-              </ul>
             </div> -->
-        
-            <div class="col-12 mt-4">
-              <ul class="nav tab-line tab-line tab-line--3x border-bottom mb-5" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#tabDescription" role="tab" aria-selected="true">
-                    Description
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabCurriculum" role="tab" aria-selected="true">
-                    Curriculum
-                  </a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabInstructors" role="tab" aria-selected="true">
-                    Instructors
-                  </a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tabReviews" role="tab" aria-selected="true">
-                      Reviews
-                    </a>
-                </li>
-              </ul>
-              <div class="tab-content">
+            <div class="col-lg-3 col-md-6 my-2">
+              <div class="border-right height-100p">
+                <span class="text-gray d-block">Categories:</span>
+                <a href="#" class="h6"><?=$courseDetails['class'];?></a>
+              </div>
+            </div>
+            <!-- <div class="col-lg-3 col-md-6 my-2">
+              <div class="border-right height-100p">
+                <span class="text-gray">Reviews:</span>
+                <p class="mb-0">
+                  <i class="fas fa-star text-warning small"></i>
+                  <i class="fas fa-star text-warning small"></i>
+                  <i class="fas fa-star text-warning small"></i>
+                  <i class="fas fa-star text-warning small"></i>
+                  <i class="fas fa-star-half small"></i>
+                  <span class="text-dark">4.9</span>
+                  <span>(793)</span>
+                </p>
+              </div>
+            </div> -->
+            <div class="col-lg-3 col-md-6 my-2">
+              <div class="text-md-right height-100p">
+                <h2 class="font-weight-bold text-primary mb-2">#<?=$courseDetails['price'];?></h2>
+                <a class="btn btn-primary" href="#">Buy Course</a>
+              </div>
+            </div>
+          </div> <!-- END row-->
+          
+          
+          <div class="ec-video-container my-4">
+            <iframe src="<?=$courseDetails['pdf_link'];?>"></iframe>
+          </div>
+        <?php endforeach; endif;?>
+          <!-- <div class="card padding-30 shadow-v3">
+            <h4>
+              Features Includes:
+            </h4>
+            <ul class="list-inline mb-0 mt-2">
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-headphone small text-primary"></i>
+                <span class="ml-2">246 lectures</span>
+              </li>
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-time small text-primary"></i>
+                <span class="ml-2">27.5 Hours</span>
+              </li>
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-user small text-primary"></i>
+                <span class="ml-2">98,250 students entrolled</span>
+              </li>
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-reload small text-primary"></i>
+                <span class="ml-2">Lifetime access</span>
+              </li>
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-crown small text-primary"></i>
+                <span class="ml-2">Certificate of Completion</span>
+              </li>
+              <li class="list-inline-item my-2 pr-md-4">
+                <i class="ti-crown small text-primary"></i>
+                <span class="ml-2">30-Day Money-Back Guarantee of Completion</span>
+              </li>
+            </ul>
+          </div> -->
+          
+          <div class="col-12 mt-4">
+            <ul class="nav tab-line tab-line tab-line--3x border-bottom mb-5" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tabDescription" role="tab" aria-selected="true">
+                  Description
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabCurriculum" role="tab" aria-selected="true">
+                  Curriculum
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabReviews" role="tab" aria-selected="true">
+                  Reviews
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <?php if($courseDetails['id']) : //echo $courseDetails['id'];exit;
+                foreach($user->getAllContentByJoin($courseDetails['id']) as $content) : ?>
                 <div class="tab-pane fade show active" id="tabDescription" role="tabpanel">
                   <h4>
-                    Course Description
+                    <?=$content['class'] ?> Description
                   </h4>
-                  <?php if($courseDetails['id']) :
-                    foreach($user->getAllContentByJoin($courseDetails['id']) as $content) : ?>
-                  <p>
-                    <?=$content['contents'] ?>
-                  </p>
-                  <!-- <p>
-                    Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimen tum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. 
-                  </p> -->
                   
-                  <!-- <div class="row mt-5">
-                  <div class="col-12">
-                    <h4>
-                      What Will I Learn?
-                    </h4>
-                  </div>
-                    <div class="col-md-6 my-2">
-                      <ul class="list-unstyled list-style-icon list-icon-check">
-                        <li>Learn how to captivate your audience</li>
-                        <li>Get rid of negative self talk that brings you down before your presentations</li>
-                        <li>Take your business / job to the next level</li>
-                        <li>Overcome the fear of public speaking</li>
-                      </ul>
-                    </div> 
-                    <div class="col-md-6 my-2">
-                      <ul class="list-unstyled list-style-icon list-icon-check">
-                        <li>Learn how to captivate your audience</li>
-                        <li>Get rid of negative self talk that brings you down before your presentations</li>
-                        <li>Take your business / job to the next level</li>
-                        <li>Overcome the fear of public speaking</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="col-md-6 my-2">
-                    <h4>
-                      Course Requirments
-                    </h4>
-                      <ul class="list-unstyled list-style-icon list-icon-bullet">
-                        <li>Learn how to captivate your audience</li>
-                        <li>Take your business / job to the next level</li>
-                        <li>Overcome the fear of public speaking</li>
-                        <li>Learn how to captivate your audience</li>
-                        <li>Take your business / job to the next level</li>
-                      </ul>
-                    </div> 
-                    
-                    <div class="col-md-6 my-2">
-                    <h4>
-                      Who is the Target Audience?
-                    </h4>
-                      <ul class="list-unstyled list-style-icon list-icon-bullet">
-                        <li>Learn how to captivate your audience</li>
-                        <li>Take your business / job to the next level</li>
-                        <li>Overcome the fear of public speaking</li>
-                        <li>Learn how to captivate your audience</li>
-                        <li>Take your business / job to the next level</li>
-                      </ul>
-                    </div> 
-                  </div> END row -->
+                  <p>
+                  <?=$content['contents'] ?>
+                  </p>
+                  
                 </div> <!-- END tab-pane-->
                 
                 <div class="tab-pane fade" id="tabCurriculum" role="tabpanel">
@@ -265,21 +207,21 @@
                     <div class="accordion-item list-group mb-3">
 
                       <div class="list-group-item bg-light">
-                      <a class="row" href="#accordionCurriculum_1" data-toggle="collapse" aria-expanded="true">
-                        <span class="col-9 col-md-8">
-                          <span class="accordion__icon text-primary mr-2">
-                            <i class="ti-plus"></i>
-                            <i class="ti-minus"></i>
+                        <a class="row" href="#accordionCurriculum_1" data-toggle="collapse" aria-expanded="true">
+                          <span class="col-9 col-md-8">
+                            <span class="accordion__icon text-primary mr-2">
+                              <i class="ti-plus"></i>
+                              <i class="ti-minus"></i>
+                            </span>
+                            <span class="h6 d-inline"><?=$content['class'] ?></span>
                           </span>
-                          <span class="h6 d-inline"><?=$content['class'] ?></span>
-                        </span>
-                        <span class="col-2 d-none d-md-block text-right">
-                          6 Lectures
-                        </span>
-                        <span class="col-3 col-md-2 text-right">
-                          20:20
-                        </span>
-                      </a>
+                          <span class="col-2 d-none d-md-block text-right">
+                            6 Lectures
+                          </span>
+                          <span class="col-3 col-md-2 text-right">
+                            20:20
+                          </span>
+                        </a>
                       </div>
 
                       <div id="accordionCurriculum_1" class="collapse show" data-parent="#accordionCurriculum">
@@ -289,6 +231,42 @@
                             <a class="col-9 col-md-8" href="#">
                               <i class="ti-control-play small mr-1 text-primary"></i>
                               <?=$content['topic'] ?>
+                            </a>
+                            <span class="col-2 d-none d-md-block text-right">
+                              <a href="../../external.html?<?=$content['pdf_link'] ?>rel=0" data-fancybox class="text-success">Preview</a>
+                            </span>
+                            <span class="col-3 col-md-2 ml-auto text-right"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div> <!-- END accordion-item -->
+                     <!-- <div class="accordion-item list-group mb-3">
+
+                      <div class="list-group-item bg-light">
+                      <a class="row collapsed" href="#accordionCurriculum_4" data-toggle="collapse" aria-expanded="true">
+                        <span class="col-9 col-md-8">
+                          <span class="accordion__icon text-primary mr-2">
+                            <i class="ti-plus"></i>
+                            <i class="ti-minus"></i>
+                          </span>
+                            <span class="h6 d-inline">JavaScript: The Tricky Stuff</span> 
+                        </span>
+                        <span class="col-2 d-none d-md-block text-right">
+                          12 Lectures
+                        </span>
+                        <span class="col-3 col-md-2 text-right">
+                          1:20:40
+                        </span>
+                      </a>
+                      </div>
+
+                      <div id="accordionCurriculum_4" class="collapse" data-parent="#accordionCurriculum">
+
+                        <div class="list-group-item">
+                          <span class="row">
+                            <a class="col-9 col-md-8" href="#">
+                              <i class="ti-control-play small mr-1 text-primary"></i>
+                              Introduction To Getting Started Section
                             </a>
                             <span class="col-2 d-none d-md-block text-right">
                               <a href="../../external.html?link=https://www.youtube.com/embed/nrJtHemSPW4?rel=0" data-fancybox class="text-success">Preview</a>
@@ -314,12 +292,13 @@
                           <span class="row">
                             <span class="col-9 col-md-8" href="#">
                               <i class="ti-control-play small mr-1 text-primary"></i>
-                              <?=$content['topic'] ?>
+                              Creating A Full Webpage
                             </span>
                             <span class="col-3 col-md-2 ml-auto text-right">7:12</span>
                           </span>
                         </div>
-                        <!-- <div class="list-group-item">
+
+                        <div class="list-group-item">
                           <span class="row">
                             <span class="col-9 col-md-8" href="#">
                               <i class="ti-files small mr-1 text-primary"></i>
@@ -347,15 +326,15 @@
                             </span>
                             <span class="col-3 col-md-2 ml-auto text-right">4:07</span>
                           </span>
-                        </div> -->
+                        </div>
 
                       </div>
-                    </div> <!-- END accordion-item -->
+                    </div>END accordion-item -->
                   </div> <!-- END accordion-->
                 </div> <!-- END tab-pane -->
-                <?php endforeach; endif; ?>
                 
-                <div class="tab-pane fade" id="tabInstructors" role="tabpanel">
+                
+                <!--<div class="tab-pane fade" id="tabInstructors" role="tabpanel">
                   <h4 class="mb-4">
                     About Instructors
                   </h4>
@@ -428,12 +407,12 @@
                     </div>
                   </div>        
                         
-                </div> <!--END tab-pane-->
+                </div>  END tab-pane -->
                 
                 <div class="tab-pane fade" id="tabReviews" role="tabpanel">
-                <h4 class="mb-4"> 
-                  Students Feedback
-                </h4>
+                  <h4 class="mb-4"> 
+                    Students Feedback
+                  </h4>
                 
                   <div class="row px-0 align-items-center border p-4">
                   <div class="col-md-4 text-center">
@@ -638,52 +617,22 @@
                     </a>
                   </div>
                 </div> <!-- END tab-pane -->
-                
-              </div> <!-- END tab-content-->
-            </div> <!-- END col-12 -->
+              <?php endforeach; endif; ?>
+            </div> <!-- END tab-content-->
+          </div> <!-- END col-12 -->
+        
       </div> <!-- END col-lg-9 -->
       
      <aside class="col-lg-3">
        <div class="card border border-light marginTop-30 shadow-v1">
          <h4 class="card-header border-bottom mb-0 h6">Choose Category</h4>
          <ul class="card-body list-unstyled mb-0">
-         <?php foreach($user->getAllSchoolsLimited() as $schools) : ?>
-            <li class="mb-2"><a href="#">All Courses</a></li>
+          <li class="mb-2"><a href="shop.php">All Courses</a></li>
+          <?php foreach($user->getAllSchoolsLimited() as $schools) : ?>
             <li class="mb-2"><a href="courses-list.php?cliid=<?=$schools['schoolid'];?>"><?=$schools['school'];?></a></li>
           <?php endforeach; ?>
          </ul>
        </div>
-       <!-- <div class="card border border-light marginTop-30 shadow-v1">
-         <h4 class="card-header border-bottom mb-0 h6">Filter By</h4>
-         <ul class="card-body list-unstyled mb-0">
-          <li class="mb-2"><a href="#">All Courses</a></li>
-          <li class="mb-2"><a href="#">Featured Courses</a></li>
-          <li class="mb-2"><a href="#">Popular Courses</a></li>
-          <li class="mb-2"><a href="#">Starting Soon</a></li>
-          <li class="mb-2"><a href="#">Intermediate</a></li>
-          <li class="mb-2"><a href="#">Advanced</a></li>
-         </ul>
-       </div>
-       <div class="card border border-light marginTop-30 shadow-v1">
-         <h4 class="card-header border-bottom mb-0 h6">By Cost</h4>
-         <ul class="card-body list-unstyled mb-0">
-          <li class="mb-2"><a href="#">All Courses</a></li>
-          <li class="mb-2"><a href="#">Paid Courses</a></li>
-          <li class="mb-2"><a href="#">Free Courses</a></li>
-         </ul>
-       </div> -->
-       <!-- <div class="card marginTop-30 shadow-v1 hover:parent">
-        <img class="hover:zoomin" src="assets/img/262x230/9.jpg" alt="">
-        <div class="card-img-overlay text-white bg-black-0_6">
-          <h4 class="card-title">
-            Enriched Learning Experiences
-          </h4>
-          <p class="my-3">
-            Get unlimited access to 2,000 of Educati’s top courses for your team.
-          </p>
-          <a href="#" class="btn btn-white">Join Now</a>
-        </div>
-       </div> -->
      </aside> <!-- END col-lg-3 -->   
      
    </div> <!-- END row-->
@@ -758,5 +707,10 @@
     </div> <!-- END row-->
   </div> <!-- END container-->
 </section> <!-- END section-->
+   
+   
+   
+   
+   
 
 <?php require "inc/footer.php" ?>

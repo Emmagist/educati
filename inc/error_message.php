@@ -10,11 +10,12 @@
 ?>
 
 <script>
-    $(document).ready(function () {
-        if ($('#error').show()) {
-            setTimeout(function(){
-                $("#error").fadeOut();
-            }, 4000);
-        }
-    })
+
+
+    setTimeout(function(){
+        $("#error").fadeOut();
+    }, 4000);
+
+
+
 </script>

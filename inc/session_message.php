@@ -21,3 +21,23 @@
   }
   
 ?>
+
+<script>
+// alert("yes");
+  setTimeout(function(){
+    $("#successMessage").fadeOut();
+  }, 4000);
+
+  setTimeout(function(){
+    $("#dangerMessage").fadeOut();
+  }, 4000);
+
+  setTimeout(function(){
+    $("#infoMessage").fadeOut();
+  }, 4000);
+
+  setTimeout(function(){
+    $("#warningMessage").fadeOut();
+  }, 4000);
+
+</script>

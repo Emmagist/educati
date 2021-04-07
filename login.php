@@ -7,6 +7,7 @@
 
 ?>
 
+
 <section class="padding-y-100 bg-light">
   <div class="container">
     <div class="row">
@@ -48,7 +49,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-white ti-lock"></span>
                 </div>
-                <input type="password" class="form-control border-left-0 pl-0" placeholder="Password" name="password">
+                <input type="password" class="form-control border-left-0 pl-0" placeholder="Password" name="password" id="password-press">
+              </div>
+              <div class="input-group input-group--focus mb-3">
+                <p id="password-sugestion" class="">Password sugestion: Ab^%@19b....</p>
               </div>
               <div class="d-md-flex justify-content-between my-4">
                 <label class="ec-checkbox check-sm my-2 clearfix">
@@ -69,5 +73,17 @@
     </div> <!-- END row-->
   </div> <!-- END container-->
 </section>
+
+<script>
+  alert("Seen");
+  document.querySelector('#password-sugestion').style.display = 'none';
+document.querySelector('#password-press').addEventListener('keypress', function () {
+    // alert("Seen");
+    document.querySelector('#password-sugestion').style.display = 'block';
+    setTimeout(() {
+      document.querySelector('#password-sugestion').style.display = 'none';
+    }, 3000);
+  });
+</script>
    
 <?php require "inc/footer.php"; ?>
