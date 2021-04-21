@@ -45,13 +45,13 @@
         </p>
       </div> <!-- END col-lg-6 ml-auto-->
       <div class="col-lg-5 mb-4 mr-auto">
-        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/4.jpg" alt="" style="">
+        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/facilitator2.jfif" alt="" style="">
       </div> 
     </div> <!-- END row-->
 
     <div class="row align-items-center mt-5">
         <div class="col-lg-5 mb-4 mr-auto">
-            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/1.jpg" alt="" style="height:250px">
+            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/facilitator.jfif" alt="" style="height:250px">
        </div> 
        
       <div class="col-lg-6">

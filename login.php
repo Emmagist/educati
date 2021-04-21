@@ -1,5 +1,7 @@
 <?php 
 
+  ini_set('display_errors',0);
+
   // require "libs/process.php";
   require "inc/head.php";
   require "inc/header.php";
@@ -64,7 +66,7 @@
               </div>
               <button type="submit" name="login_button" class="btn btn-block btn-primary">Log In</button>
               <p class="my-5 text-center">
-                Don’t have an account? <a href="page-signup.html" class="text-primary">Register</a>
+                Don’t have an account? <a href="signup.php" class="text-primary">Register</a>
               </p>
             </form>
           </div>

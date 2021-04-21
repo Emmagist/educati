@@ -39,13 +39,14 @@
      </div>
       <form class="col-lg-5 my-2 ml-auto">
         <div class="input-group bg-white rounded p-1">
-          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required="">
+          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required="" id="courseSearch">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
               Search
               <i class="ti-angle-right small"></i>
             </button>
           </div>
+          <div id="courseResult"></div>
         </div>
       </form>
    </div>
@@ -85,8 +86,8 @@
           <option>24</option>
         </select> 
         <div class="d-flex rounded border ml-3 px-2 my-2">
-          <a href="courses-list.php" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
-          <a href="page-sp-all-courcess-list.html" class="active btn px-1"><ti class="ti-view-list"></ti></a>
+          <a href="courses-list.php?cliid=<?=$id?>" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
+          <a href="courses-list-portrait.php?cliid=<?=$id?>" class="active btn px-1"><ti class="ti-view-list"></ti></a>
         </div>
        </div>
       </div>

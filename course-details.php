@@ -107,7 +107,7 @@
             <div class="col-lg-3 col-md-6 my-2">
               <div class="border-right height-100p">
                 <span class="text-gray d-block">Categories:</span>
-                <a href="#" class="h6"><?=$courseDetails['class'];?></a>
+                <a href="courses-details.php?cliid=<?=$courseDetails['id'];?>" class="h6"><?=$courseDetails['class'];?></a>
               </div>
             </div>
             <!-- <div class="col-lg-3 col-md-6 my-2">
@@ -127,16 +127,17 @@
             <div class="col-lg-3 col-md-6 my-2">
               <div class="text-md-right height-100p">
                 <h2 class="font-weight-bold text-primary mb-2">#<?=$courseDetails['price'];?></h2>
-                <a class="btn btn-primary" href="#">Buy Course</a>
+                <a class="btn btn-primary" href="checkout.php?ch=<?=$courseDetails['id'];?>">Buy Course</a>
               </div>
             </div>
           </div> <!-- END row-->
-          
-          
+          <?php endforeach; endif;?>
+          <?php if($id) : //echo $courseDetails['id'];exit;
+                foreach($user->getAllContentByJoin($id) as $content) : ?>
           <div class="ec-video-container my-4">
-            <iframe src="<?=$courseDetails['pdf_link'];?>"></iframe>
+            <iframe src="<?=$content['pdf_link'];?>"></iframe>
           </div>
-        <?php endforeach; endif;?>
+        
           <!-- <div class="card padding-30 shadow-v3">
             <h4>
               Features Includes:
@@ -188,8 +189,7 @@
               </li>
             </ul>
             <div class="tab-content">
-              <?php if($courseDetails['id']) : //echo $courseDetails['id'];exit;
-                foreach($user->getAllContentByJoin($courseDetails['id']) as $content) : ?>
+              
                 <div class="tab-pane fade show active" id="tabDescription" role="tabpanel">
                   <h4>
                     <?=$content['class'] ?> Description
@@ -213,7 +213,7 @@
                               <i class="ti-plus"></i>
                               <i class="ti-minus"></i>
                             </span>
-                            <span class="h6 d-inline"><?=$content['class'] ?></span>
+                            <span class="h6 d-inline"><?=$content['topic'] ?></span>
                           </span>
                           <span class="col-2 d-none d-md-block text-right">
                             6 Lectures
@@ -230,11 +230,14 @@
                           <span class="row">
                             <a class="col-9 col-md-8" href="#">
                               <i class="ti-control-play small mr-1 text-primary"></i>
-                              <?=$content['topic'] ?>
+                              <?=$content['title'] ?>
                             </a>
-                            <span class="col-2 d-none d-md-block text-right">
+                            <?php
+                              if(!empty($content['pdf_link'])) : ?>
+                                <span class="col-2 d-none d-md-block text-right">
                               <a href="../../external.html?<?=$content['pdf_link'] ?>rel=0" data-fancybox class="text-success">Preview</a>
                             </span>
+                              <?php else : ''; endif; ?>
                             <span class="col-3 col-md-2 ml-auto text-right"></span>
                           </span>
                         </div>
@@ -617,10 +620,10 @@
                     </a>
                   </div>
                 </div> <!-- END tab-pane -->
-              <?php endforeach; endif; ?>
+              <?php //endforeach; endif; ?>
             </div> <!-- END tab-content-->
           </div> <!-- END col-12 -->
-        
+          <?php endforeach; endif; ?>
       </div> <!-- END col-lg-9 -->
       
      <aside class="col-lg-3">

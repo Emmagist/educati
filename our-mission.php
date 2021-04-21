@@ -14,7 +14,7 @@
        <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end bg-transparent">  
           <li class="breadcrumb-item">
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
           </li> 
           <li class="breadcrumb-item">
            Our Mission
@@ -39,14 +39,14 @@
         <p class="mb-2">Equip2upgrade Training has access to a faculty of 45 highly qualified consultants to deliver the training courses. These lecturers are not in any way academics, but rather specialists actively involved in consulting to businesses in their particular fields. This gives them a fuller insight into participant or delegate needs and as well as knowledge about actual trends in the market, and makes the training courses extremely practical and relevant.</p>
       </div> <!-- END col-lg-6 ml-auto-->
       <div class="col-lg-5 mb-4 mr-auto">
-        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/4.jpg" alt="" style="height:200px">
+        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/edu_mission.jfif" alt="" style="height:200px">
         <p class="mt-2">While Management Training remains a key focus, Equip2upgrade Training has a total of 50 different public training courses, in a variety of business fields, currently running around the country and trough blended training platform, and has trained participants from a wide range of companies.</p>
       </div> 
     </div> <!-- END row-->
 
     <div class="row align-items-center mt-5">
         <div class="col-lg-5 mb-4 mr-auto">
-            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/1.jpg" alt="" style="height:250px">
+            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/edu_mission2.jfif" alt="" style="height:250px">
        </div> 
        
       <div class="col-lg-6">

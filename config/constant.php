@@ -22,5 +22,6 @@
     define("TBL_MESSAGE",          "message_us");
     define("TBL_CONTACT",          "subscribe_contact");
     define("TBL_CART",             "cart");
+    define("TBL_STUDENT",          "students");
 
 ?>

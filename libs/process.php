@@ -40,7 +40,7 @@
         // }
 
         if (empty($errors)) {
-            $db->saveData(TBL_SYSTEM_USERS, "entity_guid='$token', full_name='$name', email='$email', password='$password', xdate='$date', status='$status'");
+            $r = $db->saveData(TBL_STUDENT, "entity_guid = uuid(), user_guid = '$token', surname = '$name', email = '$email', password = '$password', xdate = '$date', status = '$status'");
             $_SESSION['success-message'] = "Registration successful !";
             header("Location: login.php");
         }
@@ -65,18 +65,18 @@
             if ($emailCheck) {
               foreach ($emailCheck as $userInfo) {
                 $_SESSION['email'] = $userInfo['email'];
-                $_SESSION['entity_guid'] = $userInfo['entity_guid'];
+                $_SESSION['entity_guid'] = $userInfo['user_guid'];
                 if (password_verify($password, $userInfo['password'])) {
                     $_SESSION['email']; $_SESSION['entity_guid']; $db->set('login', true);
                     $_SESSION['success-message'] = "You are now lodged in";
                     header("Location: student-profile.php");
                 }else {
-                    $errors['page-error'] = "Email or password not found !";
+                    $errors['page-error'] = " password not found !";
                     header("Location: login.php");
                 }
               }
             }else {
-                $errors['page-error'] = "Email or password not found !";
+                $errors['page-error'] = "Email not found !";
             }
         }
     }
@@ -91,7 +91,7 @@
 
         if (empty($errors)) {
                 foreach ($user->findUserByEmail($email) as $key) {
-                    $token = $key['entity_guid'];
+                    $token = $key['user_guid'];
                     if (isset($token)) {
                         $emailVer->sendPasswordResendLink($email,$token);
                         header("Location: reset-message.php");
@@ -125,7 +125,7 @@
         }
 
         if (empty($errors)) {
-            $db->update(TBL_SYSTEM_USERS, "password='$password_hash'", "entity_guid='$token'");
+            $db->update(TBL_STUDENT, "password='$password_hash'", "user_guid='$token'");
             $_SESSION['success-message'] = "Password reset successfully";
             header("Location: login.php");
         }
@@ -169,7 +169,7 @@
     //      }
          
     //      if ($uploadOk == 1) {
-    //          $db->update(TBL_SYSTEM_USERS, "image = ' $target_file'", "entity_guid = $token");
+    //          $db->update(TBL_STUDENT, "image = ' $target_file'", "user_guid = $token");
     //      }
     // }
 
@@ -197,7 +197,7 @@
         }
 
         if (empty($errors)) {
-            $db->saveData(TBL_CATALOGUE, "full_name = '$name', email = '$email', entity_guid = '$token', region = '$region', about_us = '$about_us', email_update = '', xdate = '$date'");
+            $db->saveData(TBL_CATALOGUE, "full_name = '$name', email = '$email', user_guid = '$token', region = '$region', about_us = '$about_us', email_update = '', xdate = '$date'");
             $_SESSION['success-message'] = "You can now download our online catalogue";
         }
     }
@@ -228,7 +228,7 @@
         }
 
         if (empty($errors)) {
-            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', entity_guid = '$token', training_type = '$training_type', training_methodology = '$training_methodology', message = '$message', subject = '', xdate = '$date'");
+            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', user_guid = '$token', training_type = '$training_type', training_methodology = '$training_methodology', message = '$message', subject = '', xdate = '$date'");
         }
     }
 
@@ -254,7 +254,7 @@
         }
 
         if (empty($errors)) {
-            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', entity_guid = '$token', training_type = '', training_methodology = '', message = '$message', subject = '$subject', xdate = '$date'");
+            $db->saveData(TBL_MESSAGE, "full_name = '$name', email = '$email', user_guid = '$token', training_type = '', training_methodology = '', message = '$message', subject = '$subject', xdate = '$date'");
         }
     }
 
@@ -291,6 +291,20 @@
             $db->saveData(TBL_CONTACT, "full_name = '', email = '$email', message = '', xdate = '$date', status = 'subscriber'");
         }
     }
+
+    if (isset($_POST['home_subscribe_button'])) {
+        $name = $db->escape($_POST['name']);
+        $email   = $db->escape($_POST['email']);
+        $date    = date('yy/m/d');
+
+        if (empty($email)) {
+            $errors['email']   = "Enter your email address to subscribe";
+        }
+
+        if (empty($errors)) {
+            $db->saveData(TBL_CONTACT, "full_name = '$name', email = '$email', message = '', xdate = '$date', status = 'subscriber'");
+        }
+    }
     
     if (isset($_POST['add_to_cart_button'])) {
         if (isset($_SESSION['entity_guid'])) {
@@ -299,10 +313,27 @@
             $shop_id = $db->escape($_POST['shop_id']);
             $image = $db->escape($_POST['image']);
             $token = $db->escape($_POST['token']);
+            $quantity = $db->escape($_POST['quantity']);
             $date = date('yy-m-d');
 
-            $db->saveData(TBL_CART, "entity_guid = '$token', class_id = '$shop_id', class = '$name', price = '$price', image = '$image', xdate='$date'");
+            $db->saveData(TBL_CART, "user_guid = '$token', class_id = '$shop_id', class = '$name', price = '$price', image = '$image', quantity = '$quantity', xdate='$date'");
+            echo "<script>
+                    Swal.fire({
+                        title: 'Hi',
+                        text: 'Please login to purchase your goods',
+                        icone: 'success',
+                        button: 'Aww Yes!'
+                    });
+            </script>";
         }else{
+            echo "<script>
+                    Swal.fire({
+                        title: 'Hi',
+                        text: 'Please login to purchase your goods',
+                        icon: 'warning',
+
+                    });
+            </script>";
             header("Location: login.php");
         }
     }

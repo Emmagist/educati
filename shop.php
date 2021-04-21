@@ -180,11 +180,12 @@
                   <button class="btn btn-outline-primary mx-1"><a href="checkout.php?ch=<?=$courses['id']?>" class="buy_button">Buy Now</a></button>
                   <form action="" method="post">
                     <input type="hidden" name="image" value="<?=$courses['image']?>">
-                    <input type="hidden" name="price" value="#<?=$courses['price']?>">
+                    <input type="hidden" name="price" value="<?=$courses['price']?>">
                     <input type="hidden" name="name" value="<?=$courses['class']?>">
                     <input type="hidden" name="shop_id" value="<?=$courses['id']?>">
                     <input type="hidden" name="token" value="<?=$token?>">
-                  <button class="btn btn-outline-light mx-1" name="add_to_cart_button" type="submit"         
+                    <input type="hidden" name="quantity" value="1">
+                  <button class="btn btn-outline-light mx-1" name="add_to_cart_button" id="add_to_cart_button" type="submit"         
                     data-container="body"
                     data-toggle="tooltip"
                     data-placement="top"

@@ -30,6 +30,9 @@
     <!-- Icon fonts -->
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/fonts/themify-icons/css/themify-icons.css">
+
+    <!-- sweetAlert -->
+    <!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
     
     
     <!-- stylesheet-->    

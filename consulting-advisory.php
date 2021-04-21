@@ -46,7 +46,7 @@
         <p class="mb-2">Our expertise to solve our clients complex Maritime, Transportation, Logistics, Supply Chain Management and Information Technology related challenges including system development</p>
       </div> <!-- END col-lg-6 ml-auto-->
       <div class="col-lg-5 mb-4 mr-auto">
-        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/4.jpg" alt="" style="height:270px">
+        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/edu_facility.jfif" alt="" style="height:270px">
         <p class="">Equip2upgrade provides consulting to SME, which is aimed at improving how our clients utilize contemporary business models, concepts and technology to optimize and achieve their business objectives while maximizing their profits.</p>
       </div> 
     </div> <!-- END row-->
@@ -57,7 +57,7 @@
     <div class="container">
         <div class="row align-items-center mt-5">
             <div class="col-lg-5 mb-4 mr-auto">
-                <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/1.jpg" alt="" style="">
+                <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/facilitator2.jfif" alt="" style="">
         </div> 
         
         <div class="col-lg-6">

@@ -4,7 +4,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 mt-5">
-         <img src="assets/img/logo-white.png" alt="Logo">
+         <img src="assets/img/E2U-Logo design-all-white.png" alt="Logo" width="70%">
          <div class="margin-y-40">
            <p>
            Equip2upgrade Training platform was established with the aim of providing short duration, high quality and high-intensity Management Training courses to companies and individuals.
@@ -41,7 +41,7 @@
           <ul class="list-unstyled marginTop-40">
             <li class="mb-2"><a href="about-us.php">About Us</a></li>
             <li class="mb-2"><a href="contact-us.php">Contact Us</a></li>
-            <li class="mb-2"><a href="information-zone.php">Information Zone</a></li>
+            <li class="mb-2"><a href="information.php">Information Zone</a></li>
             <li class="mb-2"><a href="customer-service.php">Customer Service Support</a></li>
           </ul>
         </div>
@@ -76,6 +76,23 @@
      
     <script src="assets/js/vendors.bundle.js"></script>
     <script src="assets/js/scripts.js"></script>
+    <script src="sweetalert2.min.js"></script>
+
+    <script src="sweetalert2.all.min.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/checkOutFetch.js"></script>
+  <script>
+    // $('#add_to_cart_button').on('click', function(){
+    //   alert("Please login");
+    //   swal.fire({
+    //     title: 'Hi',
+    //     text: 'Please login to purchase your goods',
+    //     type: 'success'
+    //   });
+    // });
+  </script> 
   </body>
 
 </html>

@@ -35,9 +35,21 @@
                 $where = !empty($conditions) ? "WHERE" : "";
             $result = $this->query("SELECT " . $fields . " FROM " . $table . "  $where " . $conditions);
             // var_dump($result);exit;
-            //$row_cnt = $result->num_rows;
-            // var_dump($row_cnt);exit;
                 if (!empty($result)) {
+              while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+              }
+              return $rows;
+            }
+        }
+
+        public function searchData($table, $field = "*", $conditions = "", $val = ''){
+            $rows = [];
+                $fields = trim($field);
+                $where = !empty($conditions) ? "WHERE" : "";
+            $result = $this->query("SELECT " . $fields . " FROM " . $table . "  $where " . $conditions . " LIKE '%".$val."%'");
+            // var_dump($result);exit;
+            if (!empty($result)) {
               while ($row = $result->fetch_assoc()) {
                 $rows[] = $row;
               }
@@ -122,7 +134,7 @@
         public function dateFormat($date){
             $timestamp = strtotime($date);
             // $timestamp = preg_replace('-', ' ', $timestamp);
-            return date('d m Y', $timestamp);
+            return date('d M Y', $timestamp);
         }
 
         public function selectRandLimit($table, $field = '*', $conditions = "", $limit = ""){

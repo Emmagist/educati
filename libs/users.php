@@ -6,12 +6,12 @@
     class Users {
         public function findUserByEmail($email){
             global $db;
-            return $db->selectData(TBL_SYSTEM_USERS, "*", "email = '$email'");
+            return $db->selectData(TBL_STUDENT, "*", "email = '$email'");
         }
 
         public function getAllUsers($token){
             global $db;
-            return $db->selectData(TBL_SYSTEM_USERS, "*", "entity_guid ='$token'");
+            return $db->selectData(TBL_STUDENT, "*", "user_guid ='$token'");
         }
 
         public  function  getAllClassesBySchoolId($id){
@@ -31,7 +31,7 @@
 
         public function purchasedCourse($token){
             global $db;
-            return $db->selectData(TBL_PURCHASED_COURSE, "*", "entity_guid = '$token'");
+            return $db->selectData(TBL_PURCHASED_COURSE, "*", "user_guid = '$token'");
         }
 
         public function allClasses(){
@@ -47,20 +47,7 @@
 
         public function courseDetails($id){
             global $db;
-            $rows = [];
-            $result = $db->query("SELECT * FROM classes 
-                                    INNER JOIN ada_topics
-                                    ON classes.id = ada_topics.class_id
-                                    INNER JOIN ada_contents 
-                                    ON ada_topics.class_id = ada_contents.class_id  
-                                    WHERE classes.id = '$id'");
-            if (!empty($result)) {
-                while ($row = $result->fetch_assoc()) {
-                    $rows[] = $row;
-                }
-                return $rows;
-            }
-            // return $db->selectData(TBL_CLASS, "*", "id = '$id'");
+            return $db->selectData(TBL_CLASS, "*", "id = '$id'");
         }
 
         public function getAllSchoolsLimited(){
@@ -93,9 +80,9 @@
             $rows = [];
             $result = $db->query("SELECT * FROM ada_contents
                                     INNER JOIN ada_topics
-                                    ON ada_contents.subject = ada_topics.topic_id
+                                    ON ada_contents.topic_id = ada_topics.topic_id
                                     INNER JOIN classes 
-                                    ON ada_topics.class_id = classes.id  
+                                    ON ada_contents.class_id = classes.id  
                                     WHERE ada_contents.class_id = '$id'");
             if (!empty($result)) {
                 while ($row = $result->fetch_assoc()) {
@@ -128,6 +115,21 @@
         public function getPurchasedItemsById($id){
             global $db;
             return $db->selectData(TBL_PURCHASED_COURSE, "*", "id = '$id'");
+        }
+
+        public function getCartByToken($token){
+            global $db;
+            return $db->selectData(TBL_CART, "*", "user_guid = '$token'");
+        }
+
+        public function getCourseById($id){
+            global $db;
+            return $db->selectData(TBL_CLASS, "*", "id = '$id'");
+        }
+
+        public function checkCourseById($id){
+            global $db;
+            return $db->selectData(TBL_CLASS, "*", "id = '$id'");
         }
     }
     $user = new Users;

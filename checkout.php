@@ -1,5 +1,6 @@
 <?php 
 
+  ini_set('display_errors',0);
   require "libs/process.php";
   $db->getLogin();
   require "inc/head.php";
@@ -45,8 +46,19 @@
 
 <section class="padding-y-150">
   <div class="container">
+    <div class="row mb-5">
+      <?php 
+        $getCourses = $user->checkCourseById($id); //echo "<pre>"; var_dump($getCourses);exit;
+        foreach($getCourses as $getCourse) :?>
+        <div class="col-md-4 p-3"><img src="<?=$getCourse['image']?>" alt=""></div>
+        <div class="col-md-4 p-3">
+          <p class="mt-4">Course: <?=$getCourse['class']?></p>
+          <p class="mt-4">Price: <?=$getCourse['price']?></p>
+        </div>
+        <?php endforeach; ?>
+    </div>
    <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
+        <!-- <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span>Your cart</span>
             <span class="badge badge-primary badge-pill">3</span>
@@ -94,11 +106,11 @@
               </div>
             </div>
           </form>
-        </div>
+        </div> -->
         <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate="" _lpchecked="1">
-            <div class="row">
+          <!-- <h4 class="mb-3">Billing address</h4> -->
+          <form class="needs-validation" novalidate="" _lpchecked="1" id="checkBills" method="POST" action="">
+            <!-- <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
                 <input type="text" class="form-control" id="firstName" placeholder="" value="" required="required">
@@ -195,10 +207,20 @@
                 <span class="ec-checkbox__lebel">Save this information for next time</span>
               </label>
             </div>
-            <hr class="mb-4">
+            <hr class="mb-4"> -->
 
             <h4 class="mb-3">Payment</h4>
+            <div class="form-group">
+              <?php 
+                $gets = $db->selectData(TBL_CLASS, "*", "id = '$id'");
+                foreach($gets as $get) :
 
+              ?>
+                <input type="hidden" class="form-control" id="" value="<?=$get['class']?>" name="class">
+                <input type="hidden" class="form-control" id="" value="<?=$get['price']?>" name="price">
+              <?php endforeach; ?>
+              <input type="hidden" class="form-control" id="" value="<?=$token?>" name="token">
+            </div>          
             <div class="mb-2">
                <label class="ec-radio radio-thin radio-sm">
                 <input type="radio" name="radio2">
@@ -257,7 +279,7 @@
               </div>
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="checkOut">Continue to checkout</button>
           </form>
         </div>
       </div>
@@ -265,3 +287,31 @@
 </section>
 
 <?php require "inc/footer.php" ?>
+
+<script>
+  $(document).ready(function () {
+    $(document).on('click', function (e) {
+      e.preventDefault();
+      
+    })
+  })
+  document.querySelector('#checkBills').addEventListener('click', function () {
+    // alert("Yes Working");
+    e.preventDefault();
+    // var formdata = new FormData(this);
+    var
+    alert("ok")
+    $.ajax({
+        url: 'libs/check_out.php',
+        data: formdata,
+        method: 'post',
+        success: function () {
+            alert("Transaction successfull");
+            location.reload();
+        }
+    });
+  });
+  // $('#checkOut').click(function (e) {
+  //   alert("Yes Working");
+  // });
+</script>

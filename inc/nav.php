@@ -1,8 +1,16 @@
+<?php 
+  if ($_SESSION['entity_guid']) { 
+    $token = $_SESSION['entity_guid'];
+  } 
+  
+  foreach ($user->getCartByToken($token) as $getCart) {}
+?>
+
 <nav class="ec-nav sticky-top bg-white">
-    <div class="container">
+    <div class="container-fliud">
       <div class="navbar p-0 navbar-expand-lg">
-        <div class="navbar-brand">
-          <a class="logo-default" href="index.php"><img alt="" src="assets/img/logo-black.png"></a>
+        <div class="navbar-brand " width="">
+          <a class="logo-default ml-5" href="index.php"><img alt="" src="assets/img/E2U-Logo-design.png" width="15%"></a>
         </div>
         <span aria-expanded="false" class="navbar-toggler ml-auto collapsed" data-target="#ec-nav__collapsible" data-toggle="collapse">
           <div class="hamburger hamburger--spin js-hamburger">
@@ -12,7 +20,7 @@
           </div>
         </span>
         
-        <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
+        <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible" style="margin-left:-65%">
           <ul class="nav navbar-nav ec-nav__navbar ml-auto">
               <li class="nav-item nav-item__has-dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">About</a>
@@ -30,7 +38,7 @@
                 <div class="dropdown-menu">
                     <ul class="list-unstyled">
                     <li><a class="nav-link__list" href="training-solution.php">Training Solution</a></li>
-                      <li><a class="nav-link__list" href="page-faq.html"> Customized Solution </a></li>
+                      <li><a class="nav-link__list" href="#"> Customized Solution </a></li>
                     <li><a class="nav-link__list" href="speciality-facilitators.php">Specialist Facilitators</a></li>
                       <li><a class="nav-link__list" href="consulting-advisory.php"> Consulting and Advisory Services </a></li>
                     </ul>
@@ -47,7 +55,7 @@
               </li>
 
               <li class="nav-item nav-item__has-dropdown">
-                <a class="nav-link " href="#"> Information Zone
+                <a class="nav-link " href="information.php"> Information Zone
                 </a>
               </li>
 
@@ -59,11 +67,11 @@
                 <a class="nav-link" href="shop.php"> Shop </a>
               </li>
               <li class="nav-item nav-item__has-dropdown">
-                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart"></i></a>
+                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart"> <span class=" text-danger" style="margin-bottom:10px; "><?php $count = $getCart['id']; echo $count++;?></span></i></a>
               </li>
               <?php if($_SESSION['entity_guid']): ?>
                 <li class="nav-item nav-item__has-megamenu">
-                <a class="nav-link " href="student-profile.php"> My Dashboard
+                <a class="nav-link mr-5" href="student-profile.php">Dashboard
                 </a>
               </li>
               <?php else :?>

@@ -43,7 +43,7 @@
             <div class="card-header text-center border-bottom pt-5 mb-4">
              <img class="rounded-circle mb-4" src="<?php if($userInfo['file_upload']):
              echo $userInfo['file_upload']?>
-             <?php else : echo 'assets/img/262x230/7.jpg'?>
+             <?php else : echo 'assets/img/262x230/user-avatar.png'?>
              <?php endif ?>" width="200" height="200" alt="">
              <!-- <form action="" method="post">
                 <label for="">Upload A Profile Image</label>
@@ -52,7 +52,7 @@
                 <button type="submit" name="upload_profile_button">Upload</button>
              </form> -->
              <h4>
-               <?=ucwords($userInfo['surname']) . ' ' . ucwords($userInfo['surname']); //echo '#'.mt_rand(10000000, 99999999);exit;?>
+               <?=ucwords($userInfo['surname']); //echo '#'.mt_rand(10000000, 99999999);exit;?>
              </h4>
               <!-- <p>
                 Love to eat food
@@ -62,13 +62,13 @@
                   <i class="ti-shopping-cart text-primary"></i>
                   <span class="d-block">Courses Order</span>
                   <?php foreach($user->purchasedCourse($token) as $purchasedCourse) {} ?>
-                  <span class="h6"><?php $count = $purchasedCourse['id']; echo $count++; ?></span>
+                  <span class="h6"><?php $count = $purchasedCourse['id']; echo $count; ?></span>
                 </li>
-                <li class="list-inline-item m-2">
+                <!-- <li class="list-inline-item m-2">
                   <i class="ti-heart text-primary"></i>
                   <span class="d-block">Wishlist</span>
                   <span class="h6">27</span>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="card-body border-bottom">
@@ -125,12 +125,12 @@
                 Purchase Courses
               </a>
              </li>
-             <li class="nav-item">
+             <!-- <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#Tabs_1-2" role="tab" aria-selected="true">
                <i class="ti-heart mr-1"></i>
                 Wishlist
               </a>
-             </li>
+             </li> -->
            </ul>
            
             <div class="tab-content">
@@ -161,7 +161,7 @@
                 </table>
               </div>
               </div> <!-- END tab-pane -->
-              <div class="tab-pane fade" id="Tabs_1-2" role="tabpanel">
+              <!-- <div class="tab-pane fade" id="Tabs_1-2" role="tabpanel">
                 <div class="row">
                   <div class="col-md-6 mt-4">
                     <a href="page-course-details.html" class="card text-gray overflow-hidden height-100p shadow-v1 border">
@@ -323,8 +323,8 @@
                       Load More
                     </a>
                   </div> 
-                </div> <!-- END row-->
-              </div> <!-- END tab-pane -->
+                </div> 
+              </div> END tab-pane -->
             </div> <!-- END tab-content-->
           </div> <!-- END card-->
         </div> <!-- END col-md-8 -->

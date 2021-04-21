@@ -1,5 +1,7 @@
 <?php 
 
+  ini_set('display_errors',0);
+
   require "libs/process.php";
   require "inc/head.php";
   require "inc/header.php";

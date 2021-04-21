@@ -1,15 +1,17 @@
 <?php 
 
-  // require "libs/process.php";
+  // require "libs/fetchSearch.php";
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
+
+  // echo '<pre>'; var_dump($db->searchData(TBL_CLASS, "*", "class", "v"));exit;
 
   foreach($user->getAllCourses() as $allCourses){}
 
 ?>
 
-<section class="padding-y-150 flex-center jarallax" data-dark-overlay="5" style="background:url(assets/img/1920x800/5.jpg)">
+<section class="padding-y-150 flex-center jarallax" data-dark-overlay="5" style="background:url(assets/img/1920x800/5.jpg); background-repeat:no-repeat">
   <div class="container">
     <div class="row">
       <div class="col-12 text-white text-center">
@@ -27,7 +29,7 @@
       </div>
       <form class="col-lg-7 mx-auto mt-5">
         <div class="input-group bg-white rounded p-2">
-          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required>
+          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required id="searchBox">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
               Search
@@ -35,7 +37,9 @@
             </button>
           </div>
         </div>
+        <div id="result" class="bg-white"></div>
       </form>
+      
     </div> <!-- END row-->
   </div> <!-- END container-->
 </section>
@@ -129,7 +133,7 @@
               A Valuable Certificate
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lrus quod legunt saepius claritas est.
+              Equip2upgrade guarantee you a valuable certificate of course completion after the course completion
             </p>
           </div>
         </div>
@@ -161,7 +165,7 @@
               Professional Certificate
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lrus quod legunt saepius claritas est.
+              Equip2upgrade Certificate is verified and can be use world wide
             </p>
           </div>
         </div>
@@ -177,7 +181,7 @@
               MicroMasters Programs
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lyrus quod legunt saepius claritas est.
+              Our programs are verified and handle by certified Instructors
             </p>
           </div>
         </div>
@@ -193,7 +197,7 @@
               XSeries Programs
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lyrus quod legunt saepius claritas est.
+            You earn an XSeries certificate by passing each course in the series in the verified track. 
             </p>
           </div>
         </div>
@@ -209,14 +213,14 @@
               Take The Tour
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lyrus quod legunt saepius claritas est.
+            We invite you to tour the campus with our students, and learn more about our courses, teaching, and research.
             </p>
           </div>
         </div>
       </div>
       
-    </div> <!-- END row-->
-  </div> <!-- END container-->
+    </div>  
+  </div> 
 </section> 
 
 <section class="padding-y-100 bg-cover bg-center jarallax" data-dark-overlay="6" style="background: url(assets/img/1920/550_2.jpg) no-repeat;">
@@ -241,7 +245,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-white ti-user"></span>
             </div>
-            <input type="text" class="form-control border-left-0 pl-0" placeholder="Full Name" name="">
+            <input type="text" class="form-control border-left-0 pl-0" placeholder="Full Name" name="name">
             </div>
           <div class="input-group input-group--focus mb-3">
             <div class="input-group-prepend">
@@ -262,7 +266,7 @@
 
 
     
-<section class="paddingTop-100">
+<!-- <section class="paddingTop-100">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6">
@@ -281,6 +285,18 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
     
 <?php require "inc/footer.php"; ?>
+
+<script>
+  // document.querySelector('#searchBox').addEventListener('click', function () {
+  //   alert('ghgh');
+  //   var val = document.querySelector('#searchBox').value;
+  //   alert(val);
+  // })
+// $('#searchBox').keyup(function () {
+//     var val = $('#searchBox').val();
+//     alert(val);
+// });
+</script>
