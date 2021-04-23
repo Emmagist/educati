@@ -1,10 +1,17 @@
 <?php
 
+    // Online Database
+    define("DB_HOST",              "https://www.db4free.net");
+    define("DB_USER",              "emmargist_204");
+    define("DB_PASSWORD",          "emma1994204");
+    define("DB_NAME",              "equipe2upgrade");
+
+
     // Database
-    define("DB_HOST",              "localhost");
-    define("DB_USER",              "root");
-    define("DB_PASSWORD",          "");
-    define("DB_NAME",              "equip2upgrade");
+    // define("DB_HOST",              "localhost");
+    // define("DB_USER",              "root");
+    // define("DB_PASSWORD",          "");
+    // define("DB_NAME",              "equip2upgrade");
 
     // Mailer
     define("EMAIL",                "emma1994204@gmail.com");
