@@ -1,7 +1,7 @@
 <?php
 
     // Online Database
-    define("DB_HOST",              "https://www.db4free.net");
+    define("DB_HOST",              "db4free.net");
     define("DB_USER",              "emmargist_204");
     define("DB_PASSWORD",          "emma1994204");
     define("DB_NAME",              "equipe2upgrade");
