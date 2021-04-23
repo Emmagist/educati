@@ -61,24 +61,41 @@
            $errors['password'] = "Password is required !";
         }
 
-        if (empty($errors)) {
-            if ($emailCheck) {
-              foreach ($emailCheck as $userInfo) {
-                $_SESSION['email'] = $userInfo['email'];
-                $_SESSION['entity_guid'] = $userInfo['user_guid'];
-                if (password_verify($password, $userInfo['password'])) {
-                    $_SESSION['email']; $_SESSION['entity_guid']; $db->set('login', true);
-                    $_SESSION['success-message'] = "You are now lodged in";
-                    header("Location: student-profile.php");
-                }else {
-                    $errors['page-error'] = " password not found !";
-                    header("Location: login.php");
-                }
-              }
+        if ($emailCheck > 0) {
+            // Set cookie
+            // echo $_POST['checkbox'];exit; 
+            if (!empty($_POST['checkbox'])) {
+                setcookie("email", $email, time() + 3600, '/');
+                setcookie("password", $password, time() + 3600, '/');
+
             }else {
-                $errors['page-error'] = "Email not found !";
+                // Expire cookie
+                setcookie("email", "", time() - 3600);
+                setcookie("password", "", time() - 3600);
+            }
+
+            if (empty($errors)) {
+                if ($emailCheck) {
+                  foreach ($emailCheck as $userInfo) {
+                    $_SESSION['email'] = $userInfo['email'];
+                    $_SESSION['entity_guid'] = $userInfo['user_guid'];
+                    if (password_verify($password, $userInfo['password'])) {
+                        $_SESSION['email']; $_SESSION['entity_guid']; $db->set('login', true);
+                        $_SESSION['success-message'] = "You are now lodged in";
+                        header("Location: student-profile.php");
+                    }else {
+                        $errors['page-error'] = " password not found !";
+                        header("Location: login.php");
+                    }
+                  }
+                }else {
+                    $errors['page-error'] = "Email not found !";
+                }
             }
         }
+        
+
+        
     }
 
     // Recover Pasword
@@ -318,24 +335,55 @@
 
             $db->saveData(TBL_CART, "user_guid = '$token', class_id = '$shop_id', class = '$name', price = '$price', image = '$image', quantity = '$quantity', xdate='$date'");
             echo "<script>
-                    Swal.fire({
-                        title: 'Hi',
-                        text: 'Please login to purchase your goods',
-                        icone: 'success',
-                        button: 'Aww Yes!'
-                    });
+                    alert('Added Successfully');
+                    location.reload();
             </script>";
-        }else{
-            echo "<script>
-                    Swal.fire({
-                        title: 'Hi',
-                        text: 'Please login to purchase your goods',
-                        icon: 'warning',
-
-                    });
-            </script>";
-            header("Location: login.php");
         }
+    }
+
+    if (isset($_POST['upload_profile'])) {
+        $token = $db->escape($_POST['token']);
+        $current_image = $db->escape($_POST['current_image']);
+
+        // File upload
+        $target_dir = "upload_student_img/";
+        $target_file  = $target_dir . basename($_FILES["file_upload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $check = getimagesize($_FILES["file_upload"]["tmp_name"]);
+        if($check == false) {
+            $error =  "File is not an image";
+            $uploadOk = 0;
+        }
+
+        if (file_exists($target_file)) {
+            $error = "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+
+        if ($_FILES["file_upload"]["size"] > 500000) {
+            $error = "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "jfif") {
+            $error = "Sorry, only JPG, JPEG, JFIF, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 1) {
+            $move_file = move_uploaded_file($_FILES["file_upload"]["tmp_name"], $target_file);
+            if($move_file){
+                $db->update(TBL_STUDENT, "file_upload = '$target_file'", "user_guid = '$token'");
+                unlink($current_image);
+                $_SESSION['success-message'] = "Profile uploaded successfully";
+                header("Location: student-profile.php");
+            }
+        }else{
+            echo "Your file was not uploaded";
+        }
+
+
     }
 
 ?>

@@ -45,23 +45,23 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-white ti-email"></span>
                 </div>
-                <input type="text" class="form-control border-left-0 pl-0" placeholder="Email" name="email">
+                <input type="text" class="form-control border-left-0 pl-0" placeholder="Email" name="email" value="<?php if(isset($_COOKIE['email'])){ echo $_COOKIE['email']; } ?>">
               </div>
               <div class="input-group input-group--focus mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-white ti-lock"></span>
                 </div>
-                <input type="password" class="form-control border-left-0 pl-0" placeholder="Password" name="password" id="password-press">
+                <input type="password" class="form-control border-left-0 pl-0" placeholder="Password" name="password" id="password-press" value="<?php if(isset($_COOKIE['password'])){ echo $_COOKIE['password']; } ?>">
               </div>
-              <div class="input-group input-group--focus mb-3">
+              <!-- <div class="input-group input-group--focus mb-3">
                 <p id="password-sugestion" class="">Password sugestion: Ab^%@19b....</p>
-              </div>
+              </div> -->
               <div class="d-md-flex justify-content-between my-4">
                 <label class="ec-checkbox check-sm my-2 clearfix">
-                  <input type="checkbox" name="checkbox">
+                  <input type="checkbox" name="checkbox" <?php if(isset($_COOKIE['email'])):?> checked <?php else : ''; endif; ?>>
                   <span class="ec-checkbox__control"></span>
                   <span class="ec-checkbox__lebel">Remember Me</span>
-                </label>
+                </label> 
                 <a href="recover-password.php" class="text-primary my-2 d-block">Forgot password?</a>
               </div>
               <button type="submit" name="login_button" class="btn btn-block btn-primary">Log In</button>

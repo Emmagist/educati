@@ -155,10 +155,10 @@
               <div class="card text-center height-100p shadow-v1">
               <!-- <span class="badge badge-pill badge-primary position-absolute top-20 left-10">-20%</span> -->
                 <div class="card-header">
-                  <img class="w-100" src="<?=$courses['image']?>" alt="">
+                  <img class="w-100" src="<?=$courses['image']?>" alt="" height="80%">
                 </div>
                 <div class="card-body px-3 py-0">
-                <a href="course-details.php?clid<?=$courses['id']?>" class="h6"><?=$courses['class']?></a>
+                <a href="course-details.php?clid=<?=$courses['id']?>" class="h6"><?=$courses['class']?></a>
                 <!-- <p class="text-gray">
                   Thomas Rang
                 </p> -->
@@ -177,7 +177,7 @@
                 </div>
                 </div>
                 <div class="card-footer border-top-0 d-flex">
-                  <button class="btn btn-outline-primary mx-1"><a href="checkout.php?ch=<?=$courses['id']?>" class="buy_button">Buy Now</a></button>
+                  <button class="btn btn-outline-primary mx-1"><a href="course-details.php?clid=<?=$courses['id']?>" class="buy_button">Details</a></button>
                   <form action="" method="post">
                     <input type="hidden" name="image" value="<?=$courses['image']?>">
                     <input type="hidden" name="price" value="<?=$courses['price']?>">
@@ -185,13 +185,14 @@
                     <input type="hidden" name="shop_id" value="<?=$courses['id']?>">
                     <input type="hidden" name="token" value="<?=$token?>">
                     <input type="hidden" name="quantity" value="1">
-                  <button class="btn btn-outline-light mx-1" name="add_to_cart_button" id="add_to_cart_button" type="submit"         
+                  <button class="btn btn-outline-light mx-1" name="add_to_cart_button" id="add_to_cart_button" type="submit" 
+                  data-id="<?=$courses['id']?>" data-name="<?=$courses['class']?>" data-quantity="1" data-price="<?=$courses['price']?>" data-image="<?=$courses['image']?>"      
                     data-container="body"
                     data-toggle="tooltip"
                     data-placement="top"
                     data-skin="light"
                     title="Add to card">
-                    <i class="ti-shopping-cart"></i>
+                    <i class="ti-shopping-cart text-danger"></i>
                   </button>
                   </form>
                 </div>
@@ -414,3 +415,47 @@
 
 
 <?php require "inc/footer.php" ?>
+
+<script>
+  $(function () {
+    $(".my-cart-btn").myCart(options);
+
+    var options = {
+      currencySymbol: '#',
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      classProductQuantity: 'my-product-quantity',
+      classProductRemove: 'my-product-remove',
+      classCheckoutCart: 'my-cart-checkout',
+      affixCartIcon: true,
+      showCheckoutModal: true,
+      numberOfDecimals: 2,
+      cartItems: [],
+      clickOnAddToCart: function($addTocart){
+        goToCartIcon($addTocart);
+      },
+      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+      },
+      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+      },
+      checkoutCart: function(products, totalPrice, totalQuantity) {
+        // return false, from this function 
+        // if precondition of checking out is invalid
+        // if(!willProceedToCheckout) return false;
+        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
+        checkoutString += "\n\n id \t name \t summary \t price \t quantity \t image path";
+        $.each(products, function(){
+          checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
+        });
+        alert(checkoutString)
+        console.log("checking out", products, totalPrice, totalQuantity);
+      },
+      getDiscountPrice: function(products, totalPrice, totalQuantity) {
+        console.log("calculating discount", products, totalPrice, totalQuantity);
+        return totalPrice * 0.5;
+      }
+    };
+  });
+</script>

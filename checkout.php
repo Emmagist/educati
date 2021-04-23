@@ -20,7 +20,7 @@
   <div class="container">
    <div class="row align-items-center">
      <div class="col-md-6">
-       <h2>Shop</h2>
+       <h2>Purchase Item</h2>
      </div>
      <div class="col-md-6">
       <ol class="breadcrumb justify-content-md-end bg-transparent">  
@@ -218,32 +218,11 @@
               ?>
                 <input type="hidden" class="form-control" id="" value="<?=$get['class']?>" name="class">
                 <input type="hidden" class="form-control" id="" value="<?=$get['price']?>" name="price">
+                <input type="hidden" class="form-control" id="" value="<?=$get['id']?>" name="price">
               <?php endforeach; ?>
               <input type="hidden" class="form-control" id="" value="<?=$token?>" name="token">
             </div>          
-            <div class="mb-2">
-               <label class="ec-radio radio-thin radio-sm">
-                <input type="radio" name="radio2">
-                <span class="ec-radio__control"></span>
-                <span class="ec-radio__label">Credit card</span>
-              </label>
-            </div>
-
-            <div class="mb-2">
-               <label class="ec-radio radio-thin radio-sm">
-                <input type="radio" name="radio2">
-                <span class="ec-radio__control"></span>
-                <span class="ec-radio__label">Debit card</span>
-              </label>
-            </div>
             
-            <div class="mb-2">
-               <label class="ec-radio radio-thin radio-sm">
-                <input type="radio" name="radio2">
-                <span class="ec-radio__control"></span>
-                <span class="ec-radio__label">Paypal</span>
-              </label>
-            </div>
             <hr class="mb-4">
             <div class="row">
               <div class="col-md-6 mb-3">

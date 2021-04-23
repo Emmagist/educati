@@ -3,7 +3,7 @@
     $token = $_SESSION['entity_guid'];
   } 
   
-  foreach ($user->getCartByToken($token) as $getCart) {}
+  $result = $user->getCartByToken($token);
 ?>
 
 <nav class="ec-nav sticky-top bg-white">
@@ -66,8 +66,8 @@
               <li class="nav-item nav-item__has-dropdown">
                 <a class="nav-link" href="shop.php"> Shop </a>
               </li>
-              <li class="nav-item nav-item__has-dropdown">
-                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart"> <span class=" text-danger" style="margin-bottom:10px; "><?php $count = $getCart['id']; echo $count++;?></span></i></a>
+              <li class="nav-item nav-item__has-dropdown" style="font-size:22px">
+                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart  my-cart-icon" style=""> <span class="badge badge-notify text-danger my-cart-badge" style="margin-left:-22px; font-size:18px; margin-top:-17px; position:absolute"><?php echo count($result);?></span></i></a>
               </li>
               <?php if($_SESSION['entity_guid']): ?>
                 <li class="nav-item nav-item__has-megamenu">

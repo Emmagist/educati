@@ -90,7 +90,7 @@
       <div class="row align-items-center">
 
           <div class="col-lg-5 mb-4 mr-auto">
-              <img class="wow fadeInLeft w-100 rounded " src="assets/img/384x320/edu_about4.jfif" alt="" style="height:170px">
+              <img class="wow fadeInLeft w-100 rounded " src="assets/img/384x320/main-about-us.jpg" alt="" style="height:170px">
               <p class="mt-3">
               Hampton Lloyds & Associates’ Equip2upgrade Training platform was established with the aim of providing short duration, high quality and high-intensity Management Training courses to companies and individuals.
               </p>
@@ -117,7 +117,7 @@
       <div class="row align-items-center">
 
           <div class="col-lg-5 mb-4 mr-auto">
-              <img class="wow fadeInLeft w-100 rounded " src="assets/img/384x320/edu_about5.jfif" alt="" style="height:170px">
+              <img class="wow fadeInLeft w-100 rounded " src="assets/img/384x320/main-about-us2.jpg" alt="" style="height:170px">
               <p class="mt-3">
               Furthermore, our training is handle by experience management team with industry relevant knowledge in providing businesses with high-quality and intensive short duration corporate training solutions. 
               </p>

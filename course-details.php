@@ -135,7 +135,7 @@
           <?php if($id) : //echo $courseDetails['id'];exit;
                 foreach($user->getAllContentByJoin($id) as $content) : ?>
           <div class="ec-video-container my-4">
-            <iframe src="<?=$content['pdf_link'];?>"></iframe>
+            <iframe src="<?=$content['page_link'];?>"></iframe>
           </div>
         
           <!-- <div class="card padding-30 shadow-v3">
@@ -182,11 +182,11 @@
                   Curriculum
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabReviews" role="tab" aria-selected="true">
                   Reviews
                 </a>
-              </li>
+              </li> -->
             </ul>
             <div class="tab-content">
               
@@ -412,7 +412,7 @@
                         
                 </div>  END tab-pane -->
                 
-                <div class="tab-pane fade" id="tabReviews" role="tabpanel">
+                <!--<div class="tab-pane fade" id="tabReviews" role="tabpanel">
                   <h4 class="mb-4"> 
                     Students Feedback
                   </h4>
@@ -527,7 +527,7 @@
                         Investig ationes demons travge vunt lectores legee lrus quodk legunt saepius was claritas kesty they conctetur they kedadip lectores legee sicing.
                       </p>
                     </div>
-                  </div> <!-- END row-->
+                  </div> <!-- END row
                   
                   <div class="row border-bottom mx-0 py-4 mt-4">
                     <div class="col-md-4 my-2 media">
@@ -554,7 +554,7 @@
                         Investig ationes demons travge vunt lectores legee lrus quodk legunt saepius was claritas kesty.
                       </p>
                     </div>
-                  </div> <!-- END row-->
+                  </div> <!-- END row
                   
                   <div class="row border-bottom mx-0 py-4 mt-4">
                     <div class="col-md-4 my-2 media">
@@ -583,7 +583,7 @@
                         Investig ationes demons travge vunt lectores legee lrus quodk legunt saepius was claritas kesty they conctetur they kedadip lectores legee sicing.
                       </p>
                     </div>
-                  </div> <!-- END row-->
+                  </div> <!-- END row
                   
                   
                   <div class="row border-bottom mx-0 py-4 mt-4">
@@ -612,14 +612,14 @@
                         Investig ationes demons travge vunt lectores legee lrus quodk legunt saepius was claritas kesty they conctetur they kedadip lectores legee sicing.
                       </p>
                     </div>
-                  </div> <!-- END row-->
+                  </div> <!-- END row-
                   <div class="text-center mt-5">
                     <a href="#" class="btn btn-primary btn-icon">
                       <i class="ti-reload mr-2"></i>
                       Load More
                     </a>
                   </div>
-                </div> <!-- END tab-pane -->
+                </div>  END tab-pane -->
               <?php //endforeach; endif; ?>
             </div> <!-- END tab-content-->
           </div> <!-- END col-12 -->
@@ -667,7 +667,7 @@
         <?php foreach($user->relatedClasses() as $relatedClass) : ?>
           <div class="card text-gray height-100p shadow-v2">
             <a href="course-details.php?clid=<?=$relatedClass['id'];?>">
-              <img class="card-img-top" src="assets/img/360x220/1.jpg" alt="">
+              <img class="card-img-top" src="<?=$relatedClass['image'];?>" alt="">
             </a>
             <div class="p-4">
               <a href="course-details.php?clid=<?=$relatedClass['id'];?>" class="h6">

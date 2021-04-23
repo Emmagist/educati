@@ -10,8 +10,9 @@
     $token = $_SESSION['entity_guid'];
   }
 
-  if (isset($_GET['ord'])) {
-    $id = $_GET['ord'];
+  if (isset($_GET['ord']) && isset($_GET['clid'])) {
+    $id2 = $_GET['ord'];
+    $id = $_GET['clid'];
   }
 ?>
 <div class="padding-y-60 bg-cover" data-dark-overlay="6" style="background:url(assets/img/breadcrumb-bg.jpg) no-repeat">
@@ -35,64 +36,14 @@
       <div class="row">
         <div class="col-12">
           <div class="card align-items-start shadow-v1 p-4 p-md-5">
-            <h4>
-              Order Details
-            </h4>
+            
             <div class="table-responsive my-4">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php if ($id) :
-                      foreach ($user->getPurchasedItemsById($id) as $purchasedItem) : ?>
-                    
-                    <tr>
-                      <th scope="row">
-                        <?=$purchasedItem['class']?>
-                      </th>
-                      <td>
-                      <?=$purchasedItem['price']?>
-                      </td>                      
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Order ID
-                      </th>
-                      <td>
-                      <?=$purchasedItem['order_id']?>
-                      </td>                      
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Date
-                      </th>
-                      <td>
-                      <?=$purchasedItem['xdate']?>
-                      </td>                      
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Subtotal
-                      </th>
-                      <td>
-                      <?=$purchasedItem['price']?>
-                      </td>                      
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Total
-                      </th>
-                      <td>
-                        <?=$purchasedItem['price']?>
-                      </td>                      
-                    </tr>
-                    <?php endforeach; endif; ?>
-                  </tbody>
-                </table>
+              <?php if ($id) :
+                foreach ($user->getAllContentByJoin($id) as $content) : ?>
+                <h4 class="mb-5"><?=$content['class']?></h4>
+                  <div class=""><iframe src="<?=$content['page_link']?>" frameborder="0" width="1000" height="515"></iframe></div>
+                <?php endforeach; endif; ?>
+                
               </div>
               
               <a href="student-profile.php" class="btn btn-outline-primary">Back to profile</a>

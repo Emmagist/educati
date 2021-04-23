@@ -11,7 +11,7 @@
 
 ?>
 
-<section class="padding-y-150 flex-center jarallax" data-dark-overlay="5" style="background:url(assets/img/1920x800/5.jpg); background-repeat:no-repeat">
+<section class="padding-y-150 flex-center jarallax" data-dark-overlay="5" style="background:url(assets/img/1920x800/home-page-image.jfif); background-repeat:no-repeat; background-position:center; background-size:covered;">
   <div class="container">
     <div class="row">
       <div class="col-12 text-white text-center">
@@ -29,7 +29,7 @@
       </div>
       <form class="col-lg-7 mx-auto mt-5">
         <div class="input-group bg-white rounded p-2">
-          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required id="searchBox">
+          <input type="text" class="form-control border-white" placeholder="What do you want to learn?" title="Search Here" id="searchBox">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
               Search
@@ -63,7 +63,7 @@
               <div class="col-lg-4 col-md-6 marginTop-30">
                 <div class="card text-gray overflow-hidden height-100p shadow-v1">
                 <!-- <span class="ribbon-badge font-size-sm bg-success text-white">Best selling</span> -->
-                  <img class="card-img-top" src="<?=$randomClass['image'];?>" alt="">
+                  <img class="card-img-top" src="<?=$randomClass['image'];//str_replace()?>" alt="">
                   <div class="card-body">
                     <a href="course-details.php?clid=<?=$randomClass['id'];?>" class="h5">
                       <?=$randomClass['class'];?>

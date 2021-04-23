@@ -34,8 +34,9 @@
                 $fields = trim($field);
                 $where = !empty($conditions) ? "WHERE" : "";
             $result = $this->query("SELECT " . $fields . " FROM " . $table . "  $where " . $conditions);
-            // var_dump($result);exit;
-                if (!empty($result)) {
+            //var_dump($result);exit;
+            $count = $result->num_rows;
+            if ($count > 0) {
               while ($row = $result->fetch_assoc()) {
                 $rows[] = $row;
               }
@@ -43,24 +44,23 @@
             }
         }
 
-        public function searchData($table, $field = "*", $conditions = "", $val = ''){
+        public function searchData($table, $field = "*", $conditions = "", $val = '', $limit = ''){
             $rows = [];
                 $fields = trim($field);
                 $where = !empty($conditions) ? "WHERE" : "";
-            $result = $this->query("SELECT " . $fields . " FROM " . $table . "  $where " . $conditions . " LIKE '%".$val."%'");
-            // var_dump($result);exit;
-            if (!empty($result)) {
-              while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-              }
-              return $rows;
+            $result = $this->query("SELECT " . $fields . " FROM " . $table . "  $where " . $conditions . " LIKE '%".$val."%' LIMIT " . $limit);
+            $cout = $result->num_rows; 
+            if($cout > 0){
+                if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+                }
             }
-        }
-
-        public function numRows() {
-            $val = $this->numResults;
-            $this->numResults = array();
-            return $val;
+            else{
+                return 0;
+            }
         }
 
         public function saveData($table, $sql){

@@ -83,6 +83,8 @@
   <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/checkOutFetch.js"></script>
+  <script src="assets/js/jquery.mycart.js"></script>
+  <!-- <script type='text/javascript' src="assets/js/jquery.bootstrap.min.js"></script> -->
   <script>
     // $('#add_to_cart_button').on('click', function(){
     //   alert("Please login");

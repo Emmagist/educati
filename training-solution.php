@@ -157,7 +157,7 @@
         <p class="mb-2">We develop skills and experience that employers’ value by offering a comprehensive range of flexible learning options to meet their workforce development requirement through a broad range of learning approach that offers intensive and enjoyable experience to participants.</p>
       </div> <!-- END col-lg-6 ml-auto-->
       <div class="col-lg-5 mb-4 mr-auto">
-        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/4.jpg" alt="" style="height:250px">
+        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/learning-dev.png" alt="" style="height:250px">
         <p class="mt-2"> Each course is designed to meet specific needs and participants are encouraged to learn from the other professionals on their programme by sharing ideas and experiences. We place a particular emphasis on group work where participants’ real life situations are used as vehicles for learning.</p>
       </div> 
     </div> <!-- END row-->
@@ -168,7 +168,7 @@
   <div class="container">
     <div class="row align-items-center">
         <div class="col-lg-5 mb-4 mr-auto">
-            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/2.jpg" alt="" >
+            <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/bespoke-training.jpg" alt="" style="height:300px">
             <!-- <p class="mt-2"></p> -->
       </div> 
       

@@ -59,7 +59,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php if ($token) : foreach ($user->getCartByToken($token) as $getCart) : ?>
+          <?php if ($token) : foreach ($user->getCartByToken($token) as $getCart) : $total += $getCart['price'];?>
             <tr>
               <td class="p-4">
               <span class="d-inline-block width-9rem  p-3 mr-3">
@@ -126,13 +126,13 @@
 
           <tr>
           <td colspan="3" class="p-4">
-            <form class="form-inline">
-              <!-- <input type="text" class="form-control" placeholder="Promocode" required>
-              <button type="submit" class="btn btn-primary ml-2">Submit</button> -->
-            </form>
+            <!-- <form class="form-inline">
+              <input type="text" class="form-control" placeholder="Promocode" required>
+              <button type="submit" class="btn btn-primary ml-2">Submit</button>
+            </form> -->
           </td>
           <td colspan="3">
-            Total: <span class="font-weight-semiBold font-size-18" id="totalPrice">#500.00</span>
+            Total: <span class="font-weight-semiBold font-size-18" id="totalPrice">#<?=$total;?></span>
           </td>
           </tr>
         </tbody>
@@ -158,38 +158,38 @@
 <?php require "inc/footer.php" ?>
 
 <script>
-  $(document).ready(function () {
-    var price = $('#price')val();
-    if (price > 1) {
-      // var total = $('#price').;
-      // var totalprice = total++;
-      $('#totalPrice').text('#' + price);
-    }
-  })
-  // var g = $('#quantity').val();
-  // $('#subTotal').text('#' + g);
-  $('#ti_plus').on('click', function () {
-    var quantity = $('#quantity').val();
-    // var formVal = $('#formValue').text(g); 
-    var price = $('#price').val();
-    var totalQuantityPrice = price * quantity;
-    $('#subTotal').text('#' + totalQuantityPrice);
-    // alert(r);
-  });
+  // $(document).ready(function () {
+  //   var price = $('#price')val();
+  //   if (price > 1) {
+  //     // var total = $('#price').;
+  //     // var totalprice = total++;
+  //     $('#totalPrice').text('#' + price);
+  //   }
+  // })
+  // // var g = $('#quantity').val();
+  // // $('#subTotal').text('#' + g);
+  // $('#ti_plus').on('click', function () {
+  //   var quantity = $('#quantity').val();
+  //   // var formVal = $('#formValue').text(g); 
+  //   var price = $('#price').val();
+  //   var totalQuantityPrice = price * quantity;
+  //   $('#subTotal').text('#' + totalQuantityPrice);
+  //   // alert(r);
+  // });
 
-  $('#ti_minus').on('click', function () {
-    var quantity = $('#quantity').val();
-    // var formVal = $('#formValue').text(g); 
-    // alert(g);
-    var price = $('#price').val();
-    var totalQuantityPrice = price / quantity;
-    if (totalQuantityPrice < price) {
-      // alert('error');
-      $('#subTotal').text(0);
-    }else{
-      $('#subTotal').text('#' + totalQuantityPrice);
-    }
-  });
+  // $('#ti_minus').on('click', function () {
+  //   var quantity = $('#quantity').val();
+  //   // var formVal = $('#formValue').text(g); 
+  //   // alert(g);
+  //   var price = $('#price').val();
+  //   var totalQuantityPrice = price / quantity;
+  //   if (totalQuantityPrice < price) {
+  //     // alert('error');
+  //     $('#subTotal').text(0);
+  //   }else{
+  //     $('#subTotal').text('#' + totalQuantityPrice);
+  //   }
+  // });
 
   function deleteFunction(id){
     // alert(id);
@@ -199,8 +199,8 @@
         url: 'libs/fetchDeleteCart.php',
         data: {delete_id : id},
         success: function(data){
-          // alert(data);
           location.reload();
+          alert("Deleted");
         }
       })
     }

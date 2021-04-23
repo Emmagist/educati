@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     
     <!-- Title-->
-    <title>Complete education theme for School, College, University, E-learning</title>
+    <title>Equipe2Ugrade || E-learning</title>
     
     <!-- SEO Meta-->
     <meta name="description" content="Education theme by EchoTheme">
@@ -18,9 +18,9 @@
     
             
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
-    <link rel="shortcut icon" href="assets/img/favicon/114x114.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/img/favicon/96x96.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/E2U-Logo design-all-white.png">
+    <link rel="shortcut icon" href="assets/img/E2U-Logo design-all-white.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/img/E2U-Logo design-all-white.png">
     
     
     <!--Google fonts-->
