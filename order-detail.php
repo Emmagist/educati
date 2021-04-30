@@ -41,12 +41,19 @@
               <?php if ($id) :
                 foreach ($user->getAllContentByJoin($id) as $content) : ?>
                 <h4 class="mb-5"><?=$content['class']?></h4>
-                  <div class=""><iframe src="<?=$content['page_link']?>" frameborder="0" width="1000" height="515"></iframe></div>
-                <?php endforeach; endif; ?>
-                
-              </div>
+                <div class=""><iframe src="<?=$content['page_link']?>" frameborder="0" width="1000" height="515"></iframe></div>
+                <h5 class="mt-5"><strong>Topic:</strong> <?=$content['topic']?></h5>
+                <div class="mt-2">
+                  <strong class="">Titles to be covered:</strong>
+                  <ul>
+                    <li style="list-style:none;"><?=$content['title']?></li>
+                  </ul>
+                </div>
+                <p><?=$content['contents']?></p>
+              <?php endforeach; endif; ?>
+            </div>
               
-              <a href="student-profile.php" class="btn btn-outline-primary">Back to profile</a>
+            <a href="student-profile.php" class="btn btn-outline-primary">Back to profile</a>
           </div>
         </div>
       </div> <!-- END row-->

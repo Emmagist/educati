@@ -1,22 +1,23 @@
-document.querySelector('#checkOut').addEventListener('click', function () {
-    // alert("Yes Workingg");
-  });
-
-
-// $('#checkOut').click(function (e) {
-//     alert("Yes");
-//    e.preventDefault();
-//    var formdata = new FormData(this);
-//    $.ajax({
-//        url: 'libs/check_out.php',
-//        data: formdata,
-//        method: 'post',
-//        success: function () {
-//            alert("Transaction successfull");
-//            location.reload();
-//        }
-//    });
-// });
-// $('#checkOut').click(function () {
-//     alert("clicked");
-// });
+// $('form#checkBills').on('submit', function () {
+//     // alert('oop');
+//     var that = $(this), 
+//       method = that.attr('method'),
+//       data = {}
+//     that.find('[name]').each(function (index, value) {
+//       var that = $(this),
+//         name = that.attr('name'),
+//         value = that.val();
+//         data[name] = value;
+//         alert(data[name]);
+//     });
+//     $.ajax({
+//       url: '../../libs/check_out.php',
+//       type: method,
+//       data: data,
+//       alert(data)
+//     //   success: function (data) {
+//     //       alert(data);
+//     //     location.reload();
+//     //   }
+//     })
+//   })

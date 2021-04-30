@@ -9,8 +9,8 @@
     <title>Equipe2Ugrade || E-learning</title>
     
     <!-- SEO Meta-->
-    <meta name="description" content="Education theme by EchoTheme">
-    <meta name="keywords" content="HTML5 Education theme, responsive HTML5 theme, bootstrap 4, Clean Theme">
+    <meta name="description" content="Equip2Upgrade">
+    <meta name="keywords" content="">
     <meta name="author" content="education">
     
     <!-- viewport scale-->
@@ -38,7 +38,8 @@
     <!-- stylesheet-->    
     <link rel="stylesheet" href="assets/css/vendors.bundle.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
+    <link rel="stylesheet" href="assets/css/simple_Cart.css">
   </head>
   
   <body>

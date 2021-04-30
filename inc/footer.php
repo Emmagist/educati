@@ -73,7 +73,8 @@
 <div class="scroll-top">
   <i class="ti-angle-up"></i>
 </div>
-     
+
+  
     <script src="assets/js/vendors.bundle.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="sweetalert2.min.js"></script>
@@ -83,18 +84,10 @@
   <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/checkOutFetch.js"></script>
-  <script src="assets/js/jquery.mycart.js"></script>
-  <!-- <script type='text/javascript' src="assets/js/jquery.bootstrap.min.js"></script> -->
-  <script>
-    // $('#add_to_cart_button').on('click', function(){
-    //   alert("Please login");
-    //   swal.fire({
-    //     title: 'Hi',
-    //     text: 'Please login to purchase your goods',
-    //     type: 'success'
-    //   });
-    // });
-  </script> 
+
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script> -->
+  
   </body>
 
 </html>

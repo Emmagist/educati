@@ -46,15 +46,18 @@
 
 <section class="padding-y-150">
   <div class="container">
+  <div class="text-white rounded text-center p-3 mb-3" id="alert-message" style="font-size:1.4em; margin-top:-70px; background: #00CB54;">Purchase Successful, Go to profile page to enjoy your course.</div>
     <div class="row mb-5">
       <?php 
         $getCourses = $user->checkCourseById($id); //echo "<pre>"; var_dump($getCourses);exit;
         foreach($getCourses as $getCourse) :?>
-        <div class="col-md-4 p-3"><img src="<?=$getCourse['image']?>" alt=""></div>
-        <div class="col-md-4 p-3">
-          <p class="mt-4">Course: <?=$getCourse['class']?></p>
-          <p class="mt-4">Price: <?=$getCourse['price']?></p>
-        </div>
+          <div class="col-md-4 p-3"><a href="course-details.php?clid=<?=$getCourse['id']?>"><img src="<?=$getCourse['image']?>" alt=""></a></div>
+          <div class="col-md-4 p-3">
+            <a href="course-details.php?clid=<?=$getCourse['id']?>">
+              <p class="mt-4">Course: <?=$getCourse['class']?></p>
+            </a>
+            <p class="mt-4">Price: <?=$getCourse['price']?></p>
+          </div>
         <?php endforeach; ?>
     </div>
    <div class="row">
@@ -218,10 +221,13 @@
               ?>
                 <input type="hidden" class="form-control" id="" value="<?=$get['class']?>" name="class">
                 <input type="hidden" class="form-control" id="" value="<?=$get['price']?>" name="price">
-                <input type="hidden" class="form-control" id="" value="<?=$get['id']?>" name="price">
+                <input type="hidden" class="form-control" id="" value="<?=$get['id']?>" name="id">
               <?php endforeach; ?>
-              <input type="hidden" class="form-control" id="" value="<?=$token?>" name="token">
-            </div>          
+              <?php if ($token) : foreach($user->getAllUsers($token) as $key) : ?>
+              <input type="hidden" class="form-control" id="" value="<?=$key['user_guid']?>" name="token">
+              <input type="hidden" class="form-control" id="" value="<?=$key['surname']?>" name="full_name">
+              <?php endforeach; endif; ?>
+            </div>
             
             <hr class="mb-4">
             <div class="row">
@@ -268,28 +274,56 @@
 <?php require "inc/footer.php" ?>
 
 <script>
-  $(document).ready(function () {
-    $(document).on('click', function (e) {
-      e.preventDefault();
-      
+  var message = $('#alert-message');
+  message.hide();
+  $('form#checkBills').on('submit', function () {
+    var that = $(this), 
+      method = that.attr('method'),
+      // url = that.attr('action');
+      data = {}
+      // alert(method);
+    that.find('[name]').each(function (index, value) {
+      var that = $(this),
+        name = that.attr('name'),
+        value = that.val();
+        data[name] = value;
+        // alert(data[name]);
+    });
+    $.ajax({
+      url: 'libs/check_out.php',
+      type: method,
+      data: data,
+      success: function (data) {
+        message.show();
+        setTimeout(() => {
+          message.hide();
+        }, 5000);
+      }
     })
   })
-  document.querySelector('#checkBills').addEventListener('click', function () {
-    // alert("Yes Working");
-    e.preventDefault();
-    // var formdata = new FormData(this);
-    var
-    alert("ok")
-    $.ajax({
-        url: 'libs/check_out.php',
-        data: formdata,
-        method: 'post',
-        success: function () {
-            alert("Transaction successfull");
-            location.reload();
-        }
-    });
-  });
+
+  // $(document).ready(function () {
+  //   $(document).on('click', function (e) {
+  //     e.preventDefault();
+      
+  //   });
+  // });
+  // document.querySelector('#checkOut').addEventListener('click', function () {
+  //   alert("Yes Working");
+  //   e.preventDefault();
+  //   // var formdata = new FormData(this);
+  //   var
+  //   alert("ok")
+  //   $.ajax({
+  //       url: 'libs/check_out.php',
+  //       data: formdata,
+  //       method: 'post',
+  //       success: function () {
+  //           alert("Transaction successfull");
+  //           location.reload();
+  //       }
+  //   });
+  // });
   // $('#checkOut').click(function (e) {
   //   alert("Yes Working");
   // });

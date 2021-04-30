@@ -66,8 +66,22 @@
               <li class="nav-item nav-item__has-dropdown">
                 <a class="nav-link" href="shop.php"> Shop </a>
               </li>
-              <li class="nav-item nav-item__has-dropdown" style="font-size:22px">
-                <a class="nav-link" href="cart.php"><i class="ti-shopping-cart  my-cart-icon" style=""> <span class="badge badge-notify text-danger my-cart-badge" style="margin-left:-22px; font-size:18px; margin-top:-17px; position:absolute"><?php echo count($result);?></span></i></a>
+              <li class="nav-item nav-item__has-dropdown mr-4">
+                <!-- <div class="pull-right cart-icon">  -->
+                    <div class="fa-stack has-badge" id="mydiv" data-count="" style=" margin-top:-10px; font-size: 24px; position:absolute">
+                      <a class="nav-link" href="cart2.php" id="mydiv" data-count="">
+                        <i class="ti-shopping-cart" style=""> 
+                        <span class="badge badge-notify text-danger my-cart-badge" style="margin-top: -8px;  position:absolute; margin-left:-30px">
+                        </span></i>
+                      </a>
+                        <!-- <a href="/check-out">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse "></i>
+                        </a> -->
+                    </div>
+                <!-- </div> -->
+
+                
               </li>
               <?php if($_SESSION['entity_guid']): ?>
                 <li class="nav-item nav-item__has-megamenu">
