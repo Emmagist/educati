@@ -1,7 +1,7 @@
 <?php 
 
   require "libs/process.php";
-  $db->getLogin();
+  // $db->getLogin();
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
@@ -13,9 +13,9 @@
   if (isset($_GET['cliid'])) {
     $id = $_GET['cliid'];
   }
-  foreach($user->getAllCourses() as $allCourses){
+  // foreach($user->getAllCourses() as $allCourses){
 
-  }
+  // }
 
 
 ?>
@@ -32,13 +32,13 @@
           <h2 class="h1">
             <?=$school['school'];?>
           </h2>
-          <p class="lead">
-              <span class="text-primary"><?php $count = $allCourses['id']; echo $count++; ?></span> courses found
-          </p>
         <?php endforeach; ?>
+          <p class="lead">
+              <span class="text-primary"><?=count($user->getAllClassesBySchoolId($id));?></span> courses found
+          </p>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
-        <div class="input-group bg-white rounded p-1">
+        <!-- <div class="input-group bg-white rounded p-1">
           <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required="" id="courseSearch">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
@@ -47,7 +47,7 @@
             </button>
           </div>
           <div id="courseResult"></div>
-        </div>
+        </div> -->
       </form>
    </div>
   </div>
@@ -66,25 +66,20 @@
       <div class="col-md-6 my-2">
         <ul class="list-inline">
           <li class="list-inline-item my-2">
-            <select class="form-control">
-              <option selected default>Select Category</option>
-              <?php foreach($user->getAllSchools() as $school) : ?>
-                <option><a href="course-details.php?cliid=<?=$school['schoolid'];?>"><?=$school['school'];?></a></option>
-              <?php endforeach; ?>
-            </select>
+           
           </li>
         </ul>
       </div>
       <div class="col-md-6 my-2 text-md-right">
        <div class="d-inline-flex justify-md-content-end">
-        <select class="form-control my-2">
+        <!-- <select class="form-control my-2">
           <option selected default>items per page</option>
           <option>8</option>
           <option>12</option>
           <option>16</option>
           <option>20</option>
           <option>24</option>
-        </select> 
+        </select>  -->
         <div class="d-flex rounded border ml-3 px-2 my-2">
           <a href="courses-list.php?cliid=<?=$id?>" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
           <a href="courses-list-portrait.php?cliid=<?=$id?>" class="active btn px-1"><ti class="ti-view-list"></ti></a>
@@ -103,7 +98,7 @@
     <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
     <div class="list-card align-items-center shadow-v1 marginTop-30">
       <div class="col-lg-4 px-lg-4 my-4">
-        <img class="w-100" src="<?=$allClasses['image'];?>" alt="">
+        <img class="w-100" src="<?=str_replace('../img', 'assets/img-upload/', $allClasses['image']);?>" alt="" style="height: 150px;">
       </div>
       <div class="col-lg-8 paddingRight-30 my-4">
        <div class="media justify-content-between">
@@ -140,7 +135,7 @@
        <div class="d-md-flex justify-content-between align-items-center">
          <ul class="list-inline mb-md-0">
            <li class="list-inline-item mr-3">
-             <span class="h4 d-inline text-primary">#<?=$allClasses['price']?></span>
+             <span class="h4 d-inline text-primary">&#x20A6;<?=$allClasses['price']?></span>
              <!-- <span class="h6 d-inline small text-gray"><s>$249</s></span> -->
            </li>
            <!-- <li class="list-inline-item mr-3">
@@ -153,6 +148,10 @@
            </li> -->
          </ul>
          <!-- <span class="badge badge-success">Best Selling</span> -->
+       </div>
+       <div class="d-flex">
+          <a class="btn btn-primary btn-sm btn-flat mr-3" href="checkout.php?ch=<?=$allClasses['id'];?>">Buy Course</a>
+          <a href="#" class="btn btn-danger btn-sm btn-flat text-uppercase sc-add-to-cart course-detail-href" data-pge="<?=$allClasses['id']?>" data-class="" data-price="<?=$allClasses['price']?>" data-name="<?=$allClasses['class']?>" data-buddle="1" data-sub_type="">Add to Cart</a>
        </div>
       </div>
     </div>
@@ -545,9 +544,19 @@
   </div> <!-- END container-->
 </section>
    
-   
-   
-   
-   
-   
-<?php require "inc/footer.php" ?>
+<div id="cart" style="display:none"></div>
+    
+<?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+  $(document).ready(function () {
+      $('#cart').simpleCart();
+  });
+
+  function selectCourse(id) {
+    alert(id);
+    window.location.href="course-details.php?cliid=" + id;
+  }
+</script>

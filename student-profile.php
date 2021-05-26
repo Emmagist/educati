@@ -1,7 +1,8 @@
 <?php 
 
   require "libs/process.php";
-  $db->getLogin();
+  $redirect = $db->getRedirectURI();
+  $db->getLogin($redirect);
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
@@ -59,10 +60,9 @@
                 Love to eat food
               </p> -->
               <ul class="list-inline mb-0">
-                <li class="list-inline-item m-2">
-                  <span class="text-warning" style="font-size:25px"><i class="ti-shopping-cart text-primary" ></i><?=count($user->getCartByToken($token))?></span>
+                <li class="list-inline-item m-2 mt-5">
                   <span class="d-block"><?php if(count($user->purchasedCourse($token)) <= 1 ){ echo "Course Ordered:";}else{echo "Courses Ordered:";}?></span>
-                  <span class="h6 text-warning"><?=count($user->purchasedCourse($token))?></span>
+                  <span class="h6 text-success"><?=count($user->purchasedCourse($token))?></span>
                 </li>
                 <!-- <li class="list-inline-item m-2">
                   <i class="ti-heart text-primary"></i>
@@ -149,11 +149,11 @@
                     <?php if($user->purchasedCourse($token)) :
                       foreach($user->purchasedCourse($token) as $purchasedCourse) : ?>
                       <tr>
-                        <th scope="row" class="text-dark font-weight-semiBold"><?=$purchasedCourse['order_id'];?></th>
+                        <th scope="row" class="text-dark font-weight-semiBold">#<?=$purchasedCourse['order_id'];?></th>
                         <td><?=$db->dateFormat($purchasedCourse['xdate']);?></td>
-                        <td>#<?=$purchasedCourse['price'];?></td>
+                        <td>&#x20A6;<?=$purchasedCourse['price'];?></td>
                         <td>
-                          <a href="order-detail.php?ord=<?=$purchasedCourse['id'];?>&clid=<?=$purchasedCourse['class_id'];?>" class="btn btn-link">View</a>
+                          <a href="order-detail.php?ord=<?=$purchasedCourse['id'];?>&clid=<?=$purchasedCourse['class_id'] .'&cls='.substr($purchasedCourse['class'],0,4);?>" class="btn btn-link">View</a>
                         </td>
                       </tr>
                     <?php endforeach; endif; ?>
@@ -368,5 +368,15 @@
     </div>
   </div>
 </div>
+
+<div id="cart" style="display:none"></div>
    
 <?php require "inc/footer.php" ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>

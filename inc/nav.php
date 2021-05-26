@@ -38,7 +38,7 @@
                 <div class="dropdown-menu">
                     <ul class="list-unstyled">
                     <li><a class="nav-link__list" href="training-solution.php">Training Solution</a></li>
-                      <li><a class="nav-link__list" href="#"> Customized Solution </a></li>
+                      <li><a class="nav-link__list" href="costumize-solution.php"> Customized Solution </a></li>
                     <li><a class="nav-link__list" href="speciality-facilitators.php">Specialist Facilitators</a></li>
                       <li><a class="nav-link__list" href="consulting-advisory.php"> Consulting and Advisory Services </a></li>
                     </ul>
@@ -70,7 +70,7 @@
                 <!-- <div class="pull-right cart-icon">  -->
                     <div class="fa-stack has-badge" id="mydiv" data-count="" style=" margin-top:-10px; font-size: 24px; position:absolute">
                       <a class="nav-link" href="cart2.php" id="mydiv" data-count="">
-                        <i class="ti-shopping-cart" style=""> 
+                        <i class="ti-shopping-cart"> 
                         <span class="badge badge-notify text-danger my-cart-badge" style="margin-top: -8px;  position:absolute; margin-left:-30px">
                         </span></i>
                       </a>

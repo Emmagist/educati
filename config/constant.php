@@ -30,5 +30,6 @@
     define("TBL_CONTACT",          "subscribe_contact");
     define("TBL_CART",             "cart");
     define("TBL_STUDENT",          "students");
+    define("TBL_TOTAL_AMOUNT",     "total_amount");
 
 ?>

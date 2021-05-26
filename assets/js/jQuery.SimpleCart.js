@@ -18,13 +18,18 @@
         totalCartCountClass: '.total-cart-count',
         totalCartCostClass: '.total-cart-cost',
         showcartID : '#show-cart',
+        RemoveID : '.remove-item',
+        clearCart : '.clear-cart',
+        clearAfterpayment : '#proceedToDelete',
         itemCountClass : '.item-count'
     };
 
-    function Item(name, price, count) {
+    function Item(name, price, count, subid, sub_type) {
         this.name = name;
         this.price = price;
         this.count = count;
+        this.subid = subid; //alert(subid);
+        this.sub_type = sub_type;
     }
     /*Constructor function*/
     function simpleCart(domEle, options) {
@@ -52,15 +57,13 @@
             this.cart_ele.addClass("cart-grid panel panel-defaults");
             this.cart_ele.append("<div class='panel-heading cart-heading'><div class='total-cart-count'>Your Cart 0 items</div><div class='spacer'></div><i class='fa fa-dollar total-cart-cost'>0</i><div></div></div>")
             this.cart_ele.append("<div class='panel-body cart-body'><div class='cart-products-list' id='show-cart'><!-- Dynamic Code from Script comes here--></div></div>")
-            this.cart_ele.append("<div class='cart-summary-container'>\n\
+            this.cart_ele.append("<div class='cart-summary-container'  style='margin-left:67%; border:none'>\n\
                                 <div class='cart-offer'></div>\n\
-                                        <div class='cart-total-amount'>\n\
-                                            <div>Total</div>\n\
+                                        <div class='cart-total-amount' style='border:none'>\n\
+                                            <div  style='margin-left:60%'>Total</div>\n\
                                                 <div class='spacer'></div>\n\
                                                 <div><i class='fa fa-dollar total-cart-cost'>0</i></div>\n\
                                             </div>\n\
-                                            <div class='cart-checkout'>\n\
-                                                <button type='submit' class='btn btn-primary'>Proceed To Checkout</button>\n\
                                         </div>\n\
                                  </div>");
         },
@@ -83,22 +86,22 @@
             $("#discount").val(discount)
             $("#counter").val(mi._totalCartCount());
             $(this.options.bonusDiscount).html(calca);
-            if(eval(mi._totalCartCount()) >= 15){
-                sub_dis = 20
-            }
-            else if(eval(mi._totalCartCount()) >= 10){
-                sub_dis = 15
-            }
-            else if(eval(mi._totalCartCount()) >= 5){
-                sub_dis = 10
-            }
+            // if(eval(mi._totalCartCount()) >= 15){
+            //     sub_dis = 20
+            // }
+            // else if(eval(mi._totalCartCount()) >= 10){
+            //     sub_dis = 15
+            // }
+            // else if(eval(mi._totalCartCount()) >= 5){
+            //     sub_dis = 10
+            // }
             var calca2 = (sub_dis/100)  * eval(mi._totalCartCost())
             $(this.options.bundleDicount).html(calca2);
             
             $("#sub_bundle").val(calca2)
             var paytotal = eval(mi._totalCartCost()) - calca - calca2
             $(".sub-cart-cost").html(paytotal)
-            $('#checkout').html("Pay "+paytotal); //setter data-discout
+            //$('#checkout').html("Pay "+paytotal); //setter data-discout
 
             $(this.options.cartProductListClass).html(mi._displayCart());
             $(this.options.totalCartCountClass).html("Your Cart " + mi._totalCartCount() + " items");
@@ -113,23 +116,18 @@
             $(this.options.addtoCartClass).on("click", function (e) {
                 e.preventDefault();
                 var name = $(this).attr("data-name");
-                var cost = Number($(this).attr("data-price"));
+                var price = Number($(this).attr("data-price")); //alert(price);
                 var subid = Number($(this).attr("data-pge"));
-                var buddle = Number($(this).attr("data-buddle"));
-                var sub_type = Number($(this).attr("data-sub_type"));
-                mi._addItemToCart(name, cost, 1, subid, sub_type);
+                var buddle = Number($(this).attr("data-buddle")); //alert(price);
+                var sub_type = Number($(this).attr("data-sub_type")); //alert(sub_type);
+                mi._addItemToCart(name, price, 1, subid, sub_type);
                 mi._updateCartDetails();
-                // alert(subid);
-                if(buddle == 0){
-                    location.href = "shop.php";
+                if(sub_type == 1){
+                    location.href = "cart2.php";
                 }
-                else{
-                    $("#course-modal").modal("hide")
-                }
-                // var name = $(this).attr("data-name");
-                // var cost = Number($(this).attr("data-price"));
-                // mi._addItemToCart(name, cost, 1);
-                // mi._updateCartDetails();
+                // else{
+                //     $("#course-modal").modal("hide")
+                // }
             });
 
             $(this.options.showcartID).on("change", this.options.itemCountClass, function (e) {
@@ -137,12 +135,53 @@
                 e.preventDefault();
                 var count = $(this).val();
                 var name = $(this).attr("data-name");
-                var cost = Number($(this).attr("data-price"));
+                var price = Number($(this).attr("data-price"));
                 var subid = Number($(this).attr("data-pge"));
                 var sub_type = Number($(this).attr("data-sub_type"));
-                // alert(subid);
-                mi._removeItemfromCart(name, cost, count, subid, sub_type);
+                mi._removeItemfromCart(name, price, count, subid, sub_type);
                 mi._updateCartDetails();
+            });
+
+            $(this.options.showcartID).on("click", this.options.RemoveID, function (e) {
+                var ci = this;
+                e.preventDefault();
+                var count = 0;
+                var name = $(this).attr("data-name"); //alert(name);
+                var price = Number($(this).attr("data-price")); //alert( price);
+                var subid = Number($(this).attr("data-pge")); //alert(subid);
+                var sub_type = Number($(this).attr("data-sub_type"));
+                mi._removeItemfromCart(name, price, count, subid, sub_type);
+                mi._updateCartDetails();
+            });
+
+            $(this.options.clearCart).on("click", function (e) {
+                if(eval($("#empty_val").val()) == 0){
+                    if (confirm("You're About clear your Cart")) {
+                        mi._clearCart()
+                        mi._updateCartDetails();
+                        swal("Cart Empty!", "You have successfully clear your Cart", "success");
+                        // location.href = "shop.php";
+                    }
+                } 
+                else{
+                    mi._clearCart()
+                    mi._updateCartDetails();
+                }
+                return false;
+            });
+
+            $(this.options.clearAfterpayment).on("click", function (e) {
+                if(eval($("#empty_val").val()) == 0){
+                        mi._clearCart()
+                        mi._updateCartDetails();
+                        swal("Cart Empty!", "Items purchased successfully...", "success");
+                        // location.href = "shop.php";
+                } 
+                else{
+                    mi._clearCart()
+                    mi._updateCartDetails();
+                }
+                return false;
             });
 
         },
@@ -151,7 +190,7 @@
             for (var i in this.cart) {
                 if (this.cart[i].name === name && this.cart[i].subid === subid) {
                     this.cart[i].count++;
-                    this.cart[i].sub_type;
+                    var r = this.cart[i].sub_type; alert(r);
                     this.cart[i].price = price * this.cart[i].count;
                     this._saveCart();
                     return;
@@ -168,7 +207,6 @@
                     this.cart[i].count = count;
                     this.cart[i].sub_type = sub_type;
                     this.cart[i].price = singleItemCost * count;
-                    // alert(subid);
                     if (count == 0) {
                         this.cart.splice(i, 1);
                     }
@@ -186,22 +224,30 @@
         },
         _displayCart: function () {
             var cartArray = this._listCart();
-            console.log(cartArray);
+            // console.log(cartArray);
             var output = "";
             if (cartArray.length <= 0) {
                 output = "<h4>Your cart is empty</h4>";
             }
+            $('#checkout').click(function (e) {
+                e.preventDefault;
+                cartArray.length = 0;
+                output = "<h4 class='text-success'>Items Purchased Successfully...</h4>";
+                // location.href = "student-profile.php";
+            });
+            
             for (var i in cartArray) {
                 output += "<div class='cart-each-product'>\n\
-                    <div class='name'>" + cartArray[i].name + "</div>\n\
-                    <div class='quantityContainer'>\n\
-                        <input type='hidden' value='" + cartArray[i].name + "' name='item[]'> <input type='hidden' value='" + cartArray[i].price + "' name='price[]'> <input type='text' value='" + cartArray[i].subid + "' name='subid[]'>\
-                        <input type='number' class='quantity form-control item-count' data-name='" + cartArray[i].name + "' data-price='" + cartArray[i].price + "' min='0' value=" + cartArray[i].count + " name='number[]' style='width:30px'>\n\
-                    </div>\n\
-                    <div class='' style='width:50px'><i class='fa fa-ngn quantity-am'>  " + cartArray[i].price + "</i></div>\n\
-                    <div class='quantity-am' style='width:10px'><a href='#' class='remove-item' data-name='" + cartArray[i].name + "' data-price='" + cartArray[i].price + "' data-pge='" + cartArray[i].subid + "'><i class='fa fa-trash'></i></a></div>\n\
-                    </div>";
+                <div class='name'>" + cartArray[i].name + "</div>\n\
+                <div class='quantityContainer'>\n\
+                    <input type='hidden' value='" + cartArray[i].name + "' name='item[]'> <input type='hidden' value='" + cartArray[i].price + "' name='price[]'> <input type='hidden' value='" + cartArray[i].subid + "' name='subid[]'>\n\
+                </div>\n\
+                <div class='' style='width:50px'><i class='fa fa-ngn quantity-am'>  " + cartArray[i].price + "</i></div>\n\
+                <div class='quantity-am' style='width:10px'><a href='#' class='remove-item' data-name='" + cartArray[i].name + "' data-price='" + cartArray[i].price + "' data-pge='" + cartArray[i].subid + "'><i class='fa fa-trash'></i></a></div>\n\
+                </div>";
             }
+                
+            
             return output;
         },
         _totalCartCost: function () {

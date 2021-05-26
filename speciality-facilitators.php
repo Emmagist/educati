@@ -45,7 +45,7 @@
         </p>
       </div> <!-- END col-lg-6 ml-auto-->
       <div class="col-lg-5 mb-4 mr-auto">
-        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/facilitator2.jfif" alt="" style="">
+        <img class="wow fadeInRight w-100 rounded" src="assets/img/360x300/facilitator2.jfif" alt="">
       </div> 
     </div> <!-- END row-->
 
@@ -107,4 +107,14 @@
     </div> <!-- END container-->
   </section>
      
-  <?php require "inc/footer.php" ?>
+  <div id="cart" style="display:none"></div>
+    
+<?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>

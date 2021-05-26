@@ -4,6 +4,7 @@
     
 
     $errors = array();
+    $_SESSION = [];
 
     if (isset($_POST['register_button'])) {
         $error    = '';
@@ -82,7 +83,13 @@
                     if (password_verify($password, $userInfo['password'])) {
                         $_SESSION['email']; $_SESSION['entity_guid']; $db->set('login', true);
                         $_SESSION['success-message'] = "You are now lodged in";
-                        header("Location: student-profile.php");
+                        $redirect = $_REQUEST['page_url'];
+                        if ($redirect == '') {
+                            header("Location: student-profile.php");
+                        }else {
+                            header("Location: $redirect");
+                        }
+                        
                     }else {
                         $errors['page-error'] = " password not found !";
                         header("Location: login.php");

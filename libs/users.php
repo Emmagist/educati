@@ -14,6 +14,11 @@
             return $db->selectData(TBL_STUDENT, "*", "user_guid ='$token'");
         }
 
+        public function getCourses(){
+            global $db;
+            return $db->selectData(TBL_CLASS, "*");
+        }
+
         public  function  getAllClassesBySchoolId($id){
             global  $db;
             $rows = [];
@@ -21,6 +26,21 @@
                                     INNER JOIN schools 
                                     ON classes.schoolid = schools.schoolid  
                                     WHERE classes.schoolid = '$id'");
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
+
+        public  function  getTotalAmountPurchased($order_id){
+            global  $db;
+            $rows = [];
+            $result = $db->query("SELECT * FROM total_amount
+                                    INNER JOIN purchased_courses 
+                                    ON total_amount.order_id = purchased_courses.order_id  
+                                    WHERE total_amount.order_id = '$order_id'");
             if (!empty($result)) {
                 while ($row = $result->fetch_assoc()) {
                     $rows[] = $row;
@@ -42,7 +62,7 @@
 
         public function relatedClasses(){
             global $db;
-            return $db->selectRandLimit(TBL_CLASS, "*", "", "15");
+            return $db->selectRandLimit(TBL_CLASS, "*", "", "4");
         }
 
         public function courseDetails($id){
@@ -94,7 +114,7 @@
 
         public function getAllCourses(){
             global $db;
-            return $db->selectData(TBL_CLASS, "*");
+            return $db->selectLimitAsc(TBL_CLASS, "*", "", "id", "0,12");
         }
 
         public  function  getAllTrainingSolutionCourses(){
@@ -110,6 +130,16 @@
                 }
                 return $rows;
             }
+        }
+
+        public function getContentsByCourseIdLimit($id){
+            global $db;
+            return $db->selectLimit(TBL_CONTENTS, "*", "class_id = '$id'", "contents", "1");
+        }
+
+        public function getTopicByCourseIdLimit($id){
+            global $db;
+            return $db->selectLimit(TBL_TOPIC, "*", "class_id = '$id'", "topic", "1");
         }
 
         public function getPurchasedItemsById($id){
@@ -130,6 +160,16 @@
         public function checkCourseById($id){
             global $db;
             return $db->selectData(TBL_CLASS, "*", "id = '$id'");
+        }
+
+        public function getTitleByTopicId($id){
+            global $db;
+            return $db->selectData(TBL_CONTENTS, "*", "topic_id = '$id'");
+        }
+
+        public function getContentsByTopicId($id){
+            global $db;
+            return $db->selectData(TBL_CONTENTS, "*", "content_id = '$id'");
         }
     }
     $user = new Users;

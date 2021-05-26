@@ -25,7 +25,7 @@
     </div> 
   </div>
    
-  <section class="padding-y-100">
+  <section class="padding-y-45">
     <div class="container">
     <div class="row align-items-center mb-5">
       <div class="col-lg-6">
@@ -56,41 +56,58 @@
     </div> <!-- END container-->
   </section>
      
-  <section class="padding-y-80">
+  <section class="padding-y-20" style="margin-top: -40px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
 				<h2>Upcoming Topics</h2>
 				<div class="width-4rem height-4 bg-primary rounded mt-4 marginBottom-40 mx-auto"></div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 mr-5">
 				<!-- <div class="mb-5"> -->
                 <p class="mb-5">
                 COVID-19: The New Age of Skills Development and Human Capital Development Compliance
                 Date: ………. 2021 @10:00-11:00 AM  |  Cost: Free
                 VIP Guest Speaker: 
-                Topics:
-                ⦁	NCDC regulations around COVID-19. The challenges and possibilities of proceeding with compliance during the lockdown.
-                ⦁	Skills Development Legislation. The challenges and possibilities of how to conduct training during the lockdown or partial lockdown, which includes the alternatives of facilitating training, and in addition any new draft around the Skills Development Act etc.
-                ⦁	Online Training offered by Equip2upgrade Training and many other products that entities can engage with us during the lockdown.
+                <br>Topics:
+                <ul style="margin-top: -40px">
+                  <li>NCDC regulations around COVID-19. The challenges and <br> possibilities of proceeding with compliance during the lockdown.</li>
+                  <li>Skills Development Legislation. The challenges and <br>possibilities of how to conduct training during the lockdown or partial lockdown,which includes the alternatives of facilitating training, and in addition any new draft around the Skills Development Act etc.</li>
+                  <li>Online Training offered by Equip2upgrade Training and <br>many other products that entities can engage with us during the lockdown.</li>
+                 
+                </ul>
+                
+                
+                
                 </p>
 			</div> <!-- END col-md-6 -->
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<!-- <div class="mb-5"> -->
-                <p class="mb-5">
-                Sign Up for our Webinar Updates:
-As a skills development solution provider, our purpose is to serve business, and through our weekly #Equip2upgardeSessions, we hope to continue to help South African businesses with ideas on how to continue to remain compliant, fill skills gaps and maximize skills development benefits, during the extraordinary times we find ourselves in.
-Requirements to Register:
-⦁	This webinar series is offered at no charge.
-⦁	You will need to have an active Zoom account with access.
-⦁	An internet connection in order to participate in the webinars.
-
-
-                </p>
+        <p class="mb-5">
+          Sign Up for our Webinar Updates:
+          As a skills development solution provider, our purpose is to serve business, and through our weekly #Equip2upgardeSessions, we hope to continue to help South African businesses with ideas on how to continue to remain compliant, fill skills gaps and maximize skills development benefits, during the extraordinary times we find ourselves in.
+          <br>Requirements to Register:
+          <ul style="margin-top: -40px">
+            <li>This webinar series is offered at no charge.</li>
+            <li>You will need to have an active Zoom account with access.</li>
+            <li>An internet connection in order to participate in the webinars.</li>
+          </ul>
+        </p>
 				<!-- </div> -->
 				<!-- </div> -->
 			</div> <!-- END col-md-6 -->
 		</div> <!-- END row-->
 	</div> <!-- END container-->
 </section> <!-- END -->
-  <?php require "inc/footer.php" ?>
+
+<div id="cart" style="display:none"></div>
+    
+    <?php require "inc/footer.php"; ?>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/jQuery.SimpleCart.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#cart').simpleCart();
+        });
+    </script>

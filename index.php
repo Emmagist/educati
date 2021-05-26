@@ -24,6 +24,7 @@
         <p class="lead wow slideInUp">
           <span class="text-primary font-weight-semiBold"><?php $count = $allCourses['id']; echo $count++; ?></span> courses in Business, Technology and Creative Skills taught by industry experts.
         </p>
+        <marquee behavior="" direction="" class="w-50 text-success font-size-24">International learning for anyone, anywhere for all at affordable rates.</marquee>
         <!-- <a href="#" class="btn btn-primary mt-3 wow slideInUp">Start Free Trial</a>
         <a href="#" class="btn btn-outline-white mt-3 ml-sm-3 wow slideInUp">Become an Instructor</a> -->
       </div>
@@ -61,15 +62,15 @@
           <div class="row">
             <?php foreach($user->allClasses() as $randomClass) : ?>
               <div class="col-lg-4 col-md-6 marginTop-30">
-                <div class="card text-gray overflow-hidden height-100p shadow-v1">
+                <div class="card text-gray overflow-hidden shadow-v1" style="height: 50vh;">
                 <!-- <span class="ribbon-badge font-size-sm bg-success text-white">Best selling</span> -->
-                  <img class="card-img-top" src="<?=$randomClass['image'];//str_replace()?>" alt="">
+                  <img class="card-img-top" src="<?=str_replace('../img', 'assets/img-upload', $randomClass['image'])//str_replace()?>" alt="" height="50%">
                   <div class="card-body">
                     <a href="course-details.php?clid=<?=$randomClass['id'];?>" class="h5">
                       <?=$randomClass['class'];?>
                     </a>
                     <h4 class="h5">
-                      <span class="text-primary">#<?=$randomClass['price'];?></span>
+                      <span class="text-primary">&#x20A6;<?=$randomClass['price'];?></span>
                     </h4>
                     <!-- <p class="my-3">
                       <i class="ti-user mr-2"></i>
@@ -112,6 +113,89 @@
     </div> <!-- END row-->
   </div> <!-- END container-->
 </section>
+
+<section class="padding-y-100 bg-light-v4">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 text-center">
+            <h2>
+              Our Mission
+            </h2>
+            <div class="width-4rem height-4 bg-primary rounded mt-4 marginBottom-40 mx-auto"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 marginTop-30 wow fadeInUp" data-wow-delay=".1s">
+           <div class="card height-100p text-center p-4 p-md-5 transition hover:shadow-v3">
+            <span class="iconbox iconbox-lg bg-primary mx-auto">
+               <i class="ti-book font-size-24"></i>
+             </span>
+              <h5 class="my-4">
+              Learn the 
+              </h5>
+              <p>
+              latest skills in General Transport Management, Overland transport Management, Logistics and Supply Chain Management, 
+              </p>
+              <button type="button" class="btn btn-sm btn-primary" data-toggle="popover" data-content="Warehousing management and Administration, Maritime transport Management-Shipping & Port Management, International Trade Administration, Freight Forwarding Practice and Management, Air transport Management Courses  and more.
+              ">Read more</button>
+           </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 marginTop-30 wow fadeInUp" data-wow-delay=".2s">
+           <div class="card height-100p text-center p-4 p-md-5 transition hover:shadow-v3">
+            <span class="iconbox iconbox-lg bg-success text-white mx-auto">
+               <i class="fas fa-running font-size-24"></i>
+             </span>
+              <h5 class="my-4">
+              Get ready
+              </h5>
+              <p>
+              for a career in high-demand fields like Transport, Logistics, Shipping, Freight Forwarding practice, International trade and more
+              </p>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 marginTop-30 wow fadeInUp" data-wow-delay=".3s">
+            <div class="card height-100p text-center p-4 p-md-5 transition hover:shadow-v3">
+              <span class="iconbox iconbox-lg bg-success text-white mx-auto">
+               <i class="fas fa-award font-size-24"></i>
+              </span>
+              <h5 class="my-4">
+              Earn
+              </h5>
+              <p>
+              a certificate and knowledge from a leading professional and  university in Logistics, International trade, Shipping management transport management and more.
+              </p>
+              <!-- <ul>
+                <li>We believe in being dependable </li>
+                <li>We will not compromise standard  </li>
+                <li>We believe in ethics and helpfulness </li>
+              </ul> -->
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 marginTop-30 wow fadeInUp" data-wow-delay=".3s">
+            <div class="card height-100p text-center p-4 p-md-5 transition hover:shadow-v3">
+              <span class="iconbox iconbox-lg bg-success text-white mx-auto">
+               <i class="fas fa-laptop-code font-size-24"></i>
+              </span>
+              <h5 class="my-4">
+              Upskill your personal 
+              </h5>
+              <p>
+              and organization with on-demand training and development programs
+              </p>
+              <!-- <ul>
+                <li>We believe in being dependable </li>
+                <li>We will not compromise standard  </li>
+                <li>We believe in ethics and helpfulness </li>
+              </ul> -->
+            </div>
+          </div>
+         
+
+        </div> <!-- END row-->
+      </div> <!-- END container-->
+  </section>
     
 <section class="padding-y-100">
   <div class="container">
@@ -126,14 +210,14 @@
       <div class="col-lg-4 col-md-6 mt-5 wow slideInUp" data-wow-delay=".1s">
         <div class="media">
           <div class="iconbox iconbox-lg rounded font-size-24 bg-primary text-white mt-2">
-            <i class="ti-pencil-alt"></i>
+            <i class=" fas fa-graduation-cap"></i>
           </div>
           <div class="media-body ml-4">
             <h4 class="mt-0 mb-3">
-              A Valuable Certificate
+            Graduate Training Scheme
             </h4>
             <p>
-              Equip2upgrade guarantee you a valuable certificate of course completion after the course completion
+            Do you know there are between 30-45% unemployed graduates worldwide are unemployable due to lack of employability skills?
             </p>
           </div>
         </div>
@@ -146,10 +230,10 @@
           </div>
           <div class="media-body ml-4">
             <h4 class="mt-0 mb-3">
-              Credit-Eligible
+            Career Change Training Scheme
             </h4>
             <p>
-              Investig ationes demons travg vunt lectores legere lrus quod legunt saepius claritas est.
+            Training is key to changing careers, and taking courses online – flexibly, in your own time – is the perfect way to gain the skills you need to do so.
             </p>
           </div>
         </div>
@@ -162,10 +246,10 @@
           </div>
           <div class="media-body ml-4">
             <h4 class="mt-0 mb-3">
-              Professional Certificate
+            Employability Skills
             </h4>
             <p>
-              Equip2upgrade Certificate is verified and can be use world wide
+            Discover a NEW way of Learning and take the next step in gaining skills needed by EMPLOYERS.
             </p>
           </div>
         </div>
@@ -178,16 +262,16 @@
           </div>
           <div class="media-body ml-4">
             <h4 class="mt-0 mb-3">
-              MicroMasters Programs
+            Individual Training
             </h4>
             <p>
-              Our programs are verified and handle by certified Instructors
+            We offer technical, administrative, operational and soft skill courses which provide our inspiring candidates with the needed expertise that is needed to excel in different professional working environment.
             </p>
           </div>
         </div>
       </div>
       
-      <div class="col-lg-4 col-md-6 mt-5 wow slideInUp" data-wow-delay=".2s">
+      <!-- <div class="col-lg-4 col-md-6 mt-5 wow slideInUp" data-wow-delay=".2s">
         <div class="media">
           <div class="iconbox iconbox-lg rounded font-size-24 bg-primary text-white mt-2">
             <i class="ti-book"></i>
@@ -217,7 +301,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
       
     </div>  
   </div> 
@@ -261,10 +345,7 @@
   </div> <!-- END container--> 
 </section> 
 
-
-
-
-
+<div id="cart" style="display:none"></div>
     
 <!-- <section class="paddingTop-100">
   <div class="container">
@@ -288,15 +369,11 @@
 </section> -->
     
 <?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
 
 <script>
-  // document.querySelector('#searchBox').addEventListener('click', function () {
-  //   alert('ghgh');
-  //   var val = document.querySelector('#searchBox').value;
-  //   alert(val);
-  // })
-// $('#searchBox').keyup(function () {
-//     var val = $('#searchBox').val();
-//     alert(val);
-// });
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
 </script>

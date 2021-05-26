@@ -6,7 +6,7 @@
         
         $value = $db->escape($_POST['v']);
 
-        $result = $db->searchData(TBL_CLASS, "*", "class", "$value", "7");
+        $result = $db->searchData(TBL_CLASS, "*", "class", "$value", "6");
         // $count = count($result);
         if ($result ==0) {
             echo $respond = " No Record Found";

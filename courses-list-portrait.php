@@ -1,7 +1,7 @@
 <?php 
 
   require "libs/process.php";
-  $db->getLogin();
+  // $db->getLogin();
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
@@ -13,9 +13,9 @@
   if (isset($_GET['cliid'])) {
     $id = $_GET['cliid'];
   }
-  foreach($user->getAllCourses() as $allCourses){
+  // foreach($user->getAllCourses() as $allCourses){
 
-  }
+  // }
 
 
 ?>
@@ -27,20 +27,21 @@
   <div class="container">
    <div class="row align-items-center">
      <div class="col-lg-6 my-2 text-white">
-      <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Courses</a></li>
-        <li class="breadcrumb-item">All Courses</li>
-      </ol>
-      <h2 class="h1">
-        All Courses Gird
-      </h2>
+     <?php foreach($user->getSchoolsById($id) as $school) : ?>
+        <ol class="breadcrumb breadcrumb-double-angle bg-transparent p-0">  
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item"><?=$school['school'];?></li>
+        </ol>
+        <h2 class="h1">
+          <?=$school['school'];?>
+        </h2>
+      <?php endforeach; ?>
       <p class="lead">
-        <span class="text-primary">6,178</span> courses found
+        <span class="text-primary"><?=count($user->getAllClassesBySchoolId($id))?></span> courses found
       </p>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
-        <div class="input-group bg-white rounded p-1">
+        <!-- <div class="input-group bg-white rounded p-1">
           <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required="">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
@@ -48,7 +49,7 @@
               <i class="ti-angle-right small"></i>
             </button>
           </div>
-        </div>
+        </div> -->
       </form>
    </div>
   </div>
@@ -63,12 +64,12 @@
       <div class="col-md-6 my-2">
         <ul class="list-inline">
           <li class="list-inline-item my-2">
-            <select class="form-control">
-              <option selected>Select Category</option>
+            <!-- <select class="form-control"> -->
+              <!-- <option>Select Category</option> -->
               <?php foreach($user->getAllSchools() as $school) : ?>
-                <option><a href="course-details.php?cliid=<?=$school['schoolid'];?>"><?=$school['school'];?></a></option>
+                
               <?php endforeach; ?>
-            </select>
+            <!-- </select> -->
           </li>
           <!-- <li class="list-inline-item my-2">
             <select class="form-control">
@@ -80,17 +81,17 @@
       </div>
       <div class="col-md-6 my-2 text-md-right">
        <div class="d-inline-flex justify-md-content-end">
-        <select class="form-control my-2">
+        <!-- <select class="form-control my-2">
           <option selected default>items per page</option>
           <option>8</option>
           <option>12</option>
           <option>16</option>
           <option>20</option>
           <option>24</option>
-        </select> 
+        </select>  -->
         <div class="d-flex rounded border ml-3 px-2 my-2">
-        <a href="courses-list.php?cliid=<?=$id?>" class="btn px-1"><ti class="ti-layout-grid2"></ti></a>
-          <a href="courses-list-portrait.php?cliid=<?=$id?>" class="active btn px-1"><ti class="ti-view-list"></ti></a>
+        <a href="courses-list.php?cliid=<?=$id?>" class="btn px-1"><ti class="ti-layout-grid2" title="Grid"></ti></a>
+          <a href="courses-list-portrait.php?cliid=<?=$id?>" class="active btn px-1" title="Portrait"><ti class="ti-view-list"></ti></a>
         </div>
        </div>
       </div>
@@ -107,7 +108,7 @@
       <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
         <div class="col-lg-4 col-md-6 marginTop-30">
           <div href="page-course-details.html" class="card height-100p text-gray shadow-v1">
-            <img class="card-img-top" src="<?=$allClasses['image'];?>" alt="">
+            <img class="card-img-top" src="<?=$allClasses['image'];?>" alt="" style="height: 200px;">
             <div class="card-body">
               <a href="course-details.php?clid=<?=$allClasses['id'];?>" class="h4">
                 <?=$allClasses['class']?>
@@ -131,6 +132,9 @@
                     <?=$content['content']?>
                   </p>
               <?php endforeach; endif; ?>
+              <h4 class="h5">
+                <span class="text-primary">&#x20A6;<?=$allClasses['price']?></span>
+              </h4>
             </div>
             <div class="card-footer media align-items-center justify-content-between">
               <!-- <ul class="list-unstyled mb-0">
@@ -144,9 +148,11 @@
                 </li>
               </ul> -->
              
-              <h4 class="h5 text-right">
-                <span class="text-primary">#<?=$allClasses['price']?></span>
-              </h4>
+              
+              <div class="d-flex">
+                <a class="btn btn-primary btn-sm btn-flat mr-3" href="checkout.php?ch=<?=$allClasses['id'];?>">Buy Course</a>
+                <a href="#" class="btn btn-danger btn-sm btn-flat text-uppercase sc-add-to-cart course-detail-href" data-pge="<?=$allClasses['id']?>" data-class="" data-price="<?=$allClasses['price']?>" data-name="<?=$allClasses['class']?>" data-buddle="1" data-sub_type="">Add to Cart</a>
+              </div>
             </div>
           </div>
         </div>
@@ -186,8 +192,19 @@
   </div> <!-- END container-->
 </section>
    
-   
-   
-   
-   
-<?php require "inc/footer.php" ?>
+<div id="cart" style="display:none"></div>
+    
+    <?php require "inc/footer.php"; ?>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/jQuery.SimpleCart.js"></script>
+    
+    <script>
+      $(document).ready(function () {
+          $('#cart').simpleCart();
+      });
+
+      function selectCourse(id) {
+        alert(id);
+        window.location.href="course-details.php?cliid=" + id;
+      }
+    </script>

@@ -1,7 +1,8 @@
 <?php 
 
   require "libs/process.php";
-  $db->getLogin();
+  $redirect = $db->getRedirectURI();
+  $db->getLogin($redirect);
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
@@ -16,10 +17,10 @@
 ?>
 
 <style>
-    .cart-grid  {
-    //height: calc(100vh - 190px);
+    /* .cart-grid  { */
+    /* //height: calc(100vh - 190px); */
     /* position: fixed; */
-}
+/* } */
 </style>
 
 <div class="py-5 bg-light-v2">
@@ -50,22 +51,23 @@
    <div class="row">
     
      <div class="col-12">
-        <form id="payment-form" method="POST" action="">
+        <form id="payment-form2" method="POST">
           <?php
             if($token) : foreach($user->getAllUsers($token) as $users) : ?>
-            <input type="hidden" id="student_id" name="token" value="<?=$users['entity_guid'] ?>">
+            <input type="hidden" id="student_id" name="token" value="<?=$users['user_guid'] ?>">
+            <input type="hidden" id="surname" name="surname" value="<?=$users['surname'] ?>">
           <?php endforeach; endif; ?>
             <!-- <input type="hidden" id="planmonth" name="planmonth" value="1M"> -->
-            <input type="hidden" id="amount" name="amount" value="">
+            <!-- <input type="hidden" id="amount" name="amount" value=""> -->
             <input type="hidden" id="counter" name="counter" value="">
-            <input type="hidden" id="subid" name="subid" value="">
-            <!-- <input type="text" id="discountper" name="discountper" value="0"> -->
-            <!-- <input type="hidden" id="discount" name="discount" value=""> -->
+            <input type="hidden" id="discountper" name="discountper" value="0">
+            <input type="hidden" id="discount" name="discount" value="">
             <input type="hidden" id="sub_bundle" name="sub_bundle" value="">
-            <input type="text" id="empty_val" value="0">
+            <input type="hidden" id="empty_val" value="0">
             <div id="cart"></div>
-            <button type='submit' class='btn btn-primary blog_link' id='checkout' data-price>Proceed To Checkout</button>
-            <a href='#' class='clear-cart'>Clear Cart</a>
+            <button type='button' class='btn btn-primary blog_link' id='checkout' data-price>Proceed To Checkout</button>
+            <a href='#' class='clear-cart btn btn-danger'>Clear Cart</a>
+            <input type="hidden" id="proceedToDelete" value="">
         </form>
      </div> <!-- END col-12 -->
      
@@ -92,47 +94,52 @@
         $('#cart').simpleCart();
     });
 
-  $('form#payment-form').on('submit', function () {
-    var mypath = $("#payment-form").serialize();//+"&ref="+txref;
+  $('#checkout').click(function (e) {
+    e.preventDefault()
+    var mypath = $("#payment-form2").serialize();//+"&ref="+txref;
+    //  alert(mypath);
+    // url = this.attr('action');
     $.ajax({
-        type:'POST',
-        url: 'libs/fetchCheckoutCart.php',
-        data:mypath,
-        // dataType: "json",
-        cache:false,
-        success:function(resps){
-            if(resps == 1){
-                location.href='index';
-            }
+      type:'POST',
+      url: 'libs/fetchCheckoutCart.php',
+      data:mypath,
+      dataType: "json",
+      cache:false,
+      success:function(resps){
+        if(resps){
+          location.href='student-profile.php';
+          $('#proceedToDelete').click();
         }
+        return false
+      }
     });
-
+    return false
     // var t = $('#cart').val();
     // console.log(t);
-  //   var that = $(this), 
-  //     method = that.attr('method'),
-  //     // url = that.attr('action');
-  //     data = {}
-  //     // alert(method);
-  //   that.find('[name]').each(function (index, value) {
-  //     var that = $(this),
-  //       name = that.attr('name'),
-  //       value = that.val();
-  //       data[name] = value;
-  //       alert(data[name]);
-  //   });
-  //   $.ajax({
-  //     url: 'libs/fetchCheckoutCart.php',
-  //     type: method,
-  //     data: data,
-  //     success: function (data) {
-  //       message.show();
-  //       setTimeout(() => {
-  //         message.hide();
-  //       }, 5000);
-  //     }
-  //   })
-  // })
+    //   var that = $(this), 
+    //     method = that.attr('method'),
+    //     // url = that.attr('action');
+    //     data = {}
+    //     // alert(method);
+    //   that.find('[name]').each(function (index, value) {
+    //     var that = $(this),
+    //       name = that.attr('name'),
+    //       value = that.val();
+    //       data[name] = value;
+    //       alert(data[name]);
+    //   });
+    //   $.ajax({
+    //     url: 'libs/fetchCheckoutCart.php',
+    //     type: method,
+    //     data: data,
+    //     success: function (data) {
+    //       message.show();
+    //       setTimeout(() => {
+    //         message.hide();
+    //       }, 5000);
+    //     }
+    //   })
+   })
 
 
   

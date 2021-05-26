@@ -119,4 +119,14 @@
     </div> <!-- END container-->
   </section>
      
-  <?php require "inc/footer.php" ?>
+  <div id="cart" style="display:none"></div>
+    
+<?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>

@@ -4,7 +4,6 @@
     session_start();
 
     class Database{
-
         private $con = false; // Check to see if the connection is active
         public $myconn ;// This will be our mysqli object
         private $result = array(); // Any results from a query will be stored here
@@ -12,7 +11,6 @@
         private $numResults = ""; // used for returning the number of rows
 
         function __construct(){
-
             $this->connect();
         }
 
@@ -98,13 +96,25 @@
             }
         }
 
-        public function getLogin(){
+        public function getLogin($redirect){
             if ($this->getSession('login') == false) {
                 unset($_SESSION["entity_guid"], $_SESSION["email"]);
                 session_destroy();
-                header("Location: login.php");
+                header("Location: login.php?page_url=$redirect");
                 // header("Location: login.php");
             }
+        }
+
+        public function getRedirectURI(){
+            $protocol = $_SERVER['SERVER_PROTOCOL'];
+            // echo $protocol;
+            if (strpos($protocol, "HTTPS")) {
+                $protocol = "HTTPS://";
+            }else{
+                $protocol = "HTTP://";
+            }
+
+            return $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         }
 
         public function validatePhoneNumber($phone_number){
@@ -151,10 +161,47 @@
             }
         }
 
-        // SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
-        // FROM ((Orders
-        // INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
-        // INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+        public function selectAllLimited($table, $field = '*', $conditions = "", $limit = ""){
+            $rows = [];
+            $fields = trim($field);
+            $where = !empty($conditions) ? "WHERE" : "";
+            $limits = $limit;
+            $result = $this->query("SELECT" . $fields . " FROM " . $table . " $where " . $conditions . " LIMIT " . $limits);
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                   $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
+
+        public function selectLimit($table, $field = '*', $conditions = "", $column="", $limit = ""){
+            $rows = [];
+            $fields = trim($field);
+            $where = !empty($conditions) ? "WHERE" : "";
+            $limits = $limit;
+            $result = $this->query("SELECT" . $fields . " FROM " . $table . " $where " . $conditions . " ORDER BY " . $column . " DESC LIMIT " . $limits);
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                   $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
+
+        public function selectLimitAsc($table, $field = '*', $conditions = "", $column="", $limit = ""){
+            $rows = [];
+            $fields = trim($field);
+            $where = !empty($conditions) ? "WHERE" : "";
+            $limits = $limit; 
+            $result = $this->query("SELECT" . $fields . " FROM " . $table . " $where " . $conditions . " ORDER BY " . $column . " ASC LIMIT " . $limits);
+            if (!empty($result)) {
+                while ($row = $result->fetch_assoc()) {
+                   $rows[] = $row;
+                }
+                return $rows;
+            }
+        }
     }
     $db = new Database;
 

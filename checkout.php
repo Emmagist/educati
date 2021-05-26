@@ -2,7 +2,8 @@
 
   ini_set('display_errors',0);
   require "libs/process.php";
-  $db->getLogin();
+  $redirect = $db->getRedirectURI();
+  $db->getLogin($redirect);
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";
@@ -272,6 +273,18 @@
 </section>
 
 <?php require "inc/footer.php" ?>
+
+<div id="cart" style="display:none"></div>
+    
+<?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>
 
 <script>
   var message = $('#alert-message');

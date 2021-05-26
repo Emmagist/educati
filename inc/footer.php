@@ -74,7 +74,8 @@
   <i class="ti-angle-up"></i>
 </div>
 
-  
+
+
     <script src="assets/js/vendors.bundle.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="sweetalert2.min.js"></script>
@@ -85,8 +86,14 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/checkOutFetch.js"></script>
 
+
   <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="assets/js/jQuery.SimpleCart.js"></script> -->
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script> -->
   
   </body>
 

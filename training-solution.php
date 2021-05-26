@@ -24,12 +24,12 @@
       <h2 class="h1">
         Training Solution Courses
       </h2>
-      <p>
-      <?php $count = $allCourses['id']; echo $count++; ?> courses found
+      <p class="lead">
+        <span class="text-primary"><?=count($user->getAllTrainingSolutionCourses());?></span> courses found
       </p>
      </div>
       <form class="col-lg-5 my-2 ml-auto">
-        <div class="input-group bg-white rounded p-1">
+        <!-- <div class="input-group bg-white rounded p-1">
           <input type="text" class="form-control border-white" placeholder="What do you want to learn?" required="">
           <div class="input-group-append">
             <button class="btn btn-info rounded" type="submit">
@@ -37,7 +37,7 @@
               <i class="ti-angle-right small"></i>
             </button>
           </div>
-        </div>
+        </div> -->
       </form>
    </div>
   </div>
@@ -96,8 +96,8 @@
        <div class="row">
        <?php foreach($user->getAllTrainingSolutionCourses() as $solutionCourses) : ?>
           <div class="col-md-3 marginTop-30">
-            <div href="course-details.php?clid=<?=$solutionCourses['id']?>" class="card text-gray shadow-v1">
-              <img class="card-img-top" src="<?=$solutionCourses['image']?>" alt="">
+            <div href="course-details.php?clid=<?=$solutionCourses['id']?>" class="card text-gray shadow-v1" style="height: 40vh;">
+              <img class="card-img-top" src="<?=str_replace('../img', 'assets/img-upload', $solutionCourses['image'])?>" alt="" height="55%">
               <div class="card-body">
                 <a href="course-details.php?clid=<?=$solutionCourses['id']?>" class="h5">
                 <?=$solutionCourses['class']?>
@@ -230,7 +230,7 @@
     </div> <!-- END container-->
 </section>
 
-<section class="paddingTop-50 paddingBottom-100 bg-light">
+<!-- <section class="paddingTop-50 paddingBottom-100 bg-light">
   <div class="container">
     <div class="row align-items-start">
       <aside class="col-lg-3 order-2 order-lg-1">
@@ -277,8 +277,8 @@
             </p>
             <a href="#" class="btn btn-white">Join Now</a>
           </div>
-        </div> -->
-      </aside> <!--END col-lg-3 -->
+        </div> --
+      </aside> <!--END col-lg-3 
       <div class="col-lg-9 order-1 order-lg-2">
         <h2 class="text-center">Specialized Short courses</h2>
         <div class="row">
@@ -288,7 +288,7 @@
                 <div class="card-body">
                 <!-- <span class="badge position-absolute top-0 bg-success text-white" data-offset-top="-13">
                   Best selling
-                </span> -->
+                </span> --
                   <a href="#" class="h5">
                   	General Transport Management Courses
                   </a>
@@ -302,7 +302,7 @@
                 <div class="card-body">
                 <!-- <span class="badge position-absolute top-0 bg-danger text-white" data-offset-top="-13">
                   Trending
-                </span> -->
+                </span> --
                   <a href="corperate-training.php" class="h5">
                   	Overland transport Management Courses
                   </a>
@@ -365,13 +365,23 @@
             </div>
           
         
-        </div> <!-- END row-->
-      </div> <!-- END col-lg-9 -->
+        </div> <!-- END row--
+      </div> <!-- END col-lg-9 --
       
-    </div> <!-- END row-->
+    </div> <!-- END row--
     
-  </div> <!-- END container-->
-</section>
+  </div> <!-- END container--
+</section> -->
 
    
-<?php require "inc/footer.php" ?>
+<div id="cart" style="display:none"></div>
+    
+<?php require "inc/footer.php"; ?>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="assets/js/jQuery.SimpleCart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>

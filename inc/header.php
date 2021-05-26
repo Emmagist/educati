@@ -53,3 +53,9 @@
       </div> <!-- END END row-->
     </div> <!-- END container-->
   </header><!-- END site header-->
+
+  <style>
+  .course-detail-href:hover{
+    color: #fff;
+  }
+</style>
