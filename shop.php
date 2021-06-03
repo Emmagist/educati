@@ -10,6 +10,7 @@
 ?>
  <div class="col-md-12">
         <div class="row" id="fetchCourse">
+        <div id="cart" style="display:none"></div>
         </div>  <!--END row-->
         <!-- <a href="#" class="loadContent btn btn-primary">Load Contents</a> -->
         <input type="hidden" value="<?=$count?>" id="countAll">

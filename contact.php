@@ -13,7 +13,7 @@
 <div class="py-5 bg-cover" data-dark-overlay="6" style="background:url(assets/img/1920/658_2.jpg) no-repeat">
   <div class="container">
     <h2 class="text-white">
-      Contact
+      Contact Us
     </h2>
     <ol class="breadcrumb breadcrumb-double-angle text-white bg-transparent p-0">  
       <li class="breadcrumb-item"><a href="index.php">Home</a></li>

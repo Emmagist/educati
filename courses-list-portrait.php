@@ -62,13 +62,19 @@
   <div class="container">
     <form class="row">
       <div class="col-md-6 my-2">
+        <select class="form-control my-2" name="" id="selectId" style="width:65%">
+          <option selected default>Select Category</option>
+          <?php foreach($user->getSchool() as $school) : ?>
+            <option value="<?=$school['schoolid']?>">
+              <?=$school['school']?>
+            </option>
+          <?php endforeach; ?>
+        </select> 
         <ul class="list-inline">
           <li class="list-inline-item my-2">
             <!-- <select class="form-control"> -->
               <!-- <option>Select Category</option> -->
-              <?php foreach($user->getAllSchools() as $school) : ?>
-                
-              <?php endforeach; ?>
+              
             <!-- </select> -->
           </li>
           <!-- <li class="list-inline-item my-2">
@@ -150,13 +156,14 @@
              
               
               <div class="d-flex">
-                <a class="btn btn-primary btn-sm btn-flat mr-3" href="checkout.php?ch=<?=$allClasses['id'];?>">Buy Course</a>
+                <a class="btn btn-primary btn-sm btn-flat mr-3" href="course-details.php?clid=<?=$allClasses['id'];?>">Buy Course</a>
                 <a href="#" class="btn btn-danger btn-sm btn-flat text-uppercase sc-add-to-cart course-detail-href" data-pge="<?=$allClasses['id']?>" data-class="" data-price="<?=$allClasses['price']?>" data-name="<?=$allClasses['class']?>" data-buddle="1" data-sub_type="">Add to Cart</a>
               </div>
             </div>
           </div>
         </div>
-      <?php endforeach; endif; ?>
+      <?php endforeach;
+      else: echo '<p style="color:red">No Record Fund !</p>'; endif; ?>
       <!-- <div class="col-12 marginTop-70">
         <ul class="pagination pagination-primary justify-content-center">
           <li class="page-item mx-1">
@@ -198,13 +205,18 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="assets/js/jQuery.SimpleCart.js"></script>
     
-    <script>
-      $(document).ready(function () {
-          $('#cart').simpleCart();
-      });
+<script>
+  $(document).ready(function () {
+      $('#cart').simpleCart();
+  });
 
-      function selectCourse(id) {
-        alert(id);
-        window.location.href="course-details.php?cliid=" + id;
-      }
-    </script>
+  $('#selectId').change(function () {
+    var id = $(this).children('option:selected').val();
+    window.location.href="courses-list-portrait.php?cliid=" + id;
+  });
+
+  function selectCourse(id) {
+    // alert(id);
+    window.location.href="course-details.php?cliid=" + id;
+  }
+</script>

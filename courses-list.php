@@ -64,6 +64,14 @@
   <div class="container">
     <form class="row">
       <div class="col-md-6 my-2">
+        <select class="form-control my-2" name="" id="selectId" style="width:65%">
+          <option selected default>Select Category</option>
+          <?php foreach($user->getSchool() as $school) : ?>
+            <option value="<?=$school['schoolid']?>">
+              <?=$school['school']?>
+            </option>
+          <?php endforeach; ?>
+        </select> 
         <ul class="list-inline">
           <li class="list-inline-item my-2">
            
@@ -95,67 +103,67 @@
 
 <section class="paddingTop-50 paddingBottom-100 bg-light-v2">
   <div class="container">
-    <?php if($school['schoolid']) : foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
-    <div class="list-card align-items-center shadow-v1 marginTop-30">
-      <div class="col-lg-4 px-lg-4 my-4">
-        <img class="w-100" src="<?=str_replace('../img', 'assets/img-upload/', $allClasses['image']);?>" alt="" style="height: 150px;">
-      </div>
-      <div class="col-lg-8 paddingRight-30 my-4">
-       <div class="media justify-content-between">
-         <div class="group">
-          <a href="course-details.php?clid=<?=$allClasses['id'];?>" class="h4">
-            <?=$allClasses['class']?>
-          </a>
-          <!-- <ul class="list-inline mt-3">
-            <li class="list-inline-item mr-2">
-              <i class="ti-user mr-2"></i>
-              Andrew Mead, John Doe
+    <?php if(isset($school['schoolid'])) : foreach ($user->getAllClassesBySchoolId($id) as $allClasses) : ?>
+      <div class="list-card align-items-center shadow-v1 marginTop-30">
+        <div class="col-lg-4 px-lg-4 my-4">
+          <img class="w-100" src="<?=str_replace('../img', 'assets/img-upload/', $allClasses['image']);?>" alt="" style="height: 150px;">
+        </div>
+        <div class="col-lg-8 paddingRight-30 my-4">
+        <div class="media justify-content-between">
+          <div class="group">
+            <a href="course-details.php?clid=<?=$allClasses['id'];?>" class="h4">
+              <?=$allClasses['class']?>
+            </a>
+            <!-- <ul class="list-inline mt-3">
+              <li class="list-inline-item mr-2">
+                <i class="ti-user mr-2"></i>
+                Andrew Mead, John Doe
+              </li>
+              <li class="list-inline-item mr-2">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <span class="text-dark">5</span>
+                <span>(4578)</span>
+              </li>
+            </ul> -->
+          </div>
+          <!-- <a href="#" class="btn btn-opacity-primary iconbox iconbox-sm" data-container="body" data-toggle="tooltip" data-placement="top" data-skin="light" title="" data-original-title="Add to wishlist">
+              <i class="ti-heart"></i>
+            </a> -->
+        </div>
+        <?php if($allClasses['id']) :
+            foreach ($user->getAllFromTopicById($allClasses['id']) as $content) : ?>
+            <p>
+              <?=$content['content']?>
+            </p>
+        <?php endforeach; endif; ?>
+        <div class="d-md-flex justify-content-between align-items-center">
+          <ul class="list-inline mb-md-0">
+            <li class="list-inline-item mr-3">
+              <span class="h4 d-inline text-primary">&#x20A6;<?=$allClasses['price']?></span>
+              <!-- <span class="h6 d-inline small text-gray"><s>$249</s></span> -->
             </li>
-            <li class="list-inline-item mr-2">
-              <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
-              <span class="text-dark">5</span>
-              <span>(4578)</span>
+            <!-- <li class="list-inline-item mr-3">
+              <i class="ti-headphone small mr-2"></i>
+              46 lectures
             </li>
-          </ul> -->
-         </div>
-         <!-- <a href="#" class="btn btn-opacity-primary iconbox iconbox-sm" data-container="body" data-toggle="tooltip" data-placement="top" data-skin="light" title="" data-original-title="Add to wishlist">
-            <i class="ti-heart"></i>
-          </a> -->
-       </div>
-       <?php if($allClasses['id']) :
-          foreach ($user->getAllFromTopicById($allClasses['id']) as $content) : ?>
-          <p>
-            <?=$content['content']?>
-          </p>
-       <?php endforeach; endif; ?>
-       <div class="d-md-flex justify-content-between align-items-center">
-         <ul class="list-inline mb-md-0">
-           <li class="list-inline-item mr-3">
-             <span class="h4 d-inline text-primary">&#x20A6;<?=$allClasses['price']?></span>
-             <!-- <span class="h6 d-inline small text-gray"><s>$249</s></span> -->
-           </li>
-           <!-- <li class="list-inline-item mr-3">
-             <i class="ti-headphone small mr-2"></i>
-             46 lectures
-           </li>
-           <li class="list-inline-item mr-3">
-             <i class="ti-time small mr-2"></i>
-             27.5 hours
-           </li> -->
-         </ul>
-         <!-- <span class="badge badge-success">Best Selling</span> -->
-       </div>
-       <div class="d-flex">
-          <a class="btn btn-primary btn-sm btn-flat mr-3" href="checkout.php?ch=<?=$allClasses['id'];?>">Buy Course</a>
-          <a href="#" class="btn btn-danger btn-sm btn-flat text-uppercase sc-add-to-cart course-detail-href" data-pge="<?=$allClasses['id']?>" data-class="" data-price="<?=$allClasses['price']?>" data-name="<?=$allClasses['class']?>" data-buddle="1" data-sub_type="">Add to Cart</a>
-       </div>
+            <li class="list-inline-item mr-3">
+              <i class="ti-time small mr-2"></i>
+              27.5 hours
+            </li> -->
+          </ul>
+          <!-- <span class="badge badge-success">Best Selling</span> -->
+        </div>
+        <div class="d-flex">
+            <a class="btn btn-primary btn-sm btn-flat mr-3" href="course-details.php?clid=<?=$allClasses['id'];?>">Buy Course</a>
+            <a href="#" class="btn btn-danger btn-sm btn-flat text-uppercase sc-add-to-cart course-detail-href" data-pge="<?=$allClasses['id']?>" data-class="" data-price="<?=$allClasses['price']?>" data-name="<?=$allClasses['class']?>" data-buddle="1" data-sub_type="">Add to Cart</a>
+        </div>
+        </div>
       </div>
-    </div>
-    <?php endforeach; endif; ?>
+    <?php endforeach; else: echo '<p style="color:red">No Record Fund !</p>'; endif; ?>
 <!--     
     <div class="list-card align-items-center shadow-v1 marginTop-30">
       <div class="col-lg-4 px-lg-4 my-4">
@@ -555,8 +563,14 @@
       $('#cart').simpleCart();
   });
 
+  $('#selectId').change(function () {
+    var id = $(this).children('option:selected').val();
+    window.location.href="courses-list.php?cliid=" + id;
+  });
+
   function selectCourse(id) {
-    alert(id);
+    // alert(id);
     window.location.href="course-details.php?cliid=" + id;
   }
+
 </script>

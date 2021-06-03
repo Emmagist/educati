@@ -45,7 +45,7 @@
             <h2 class="mb-5 text-center"><?=$class['class']?></h2>
           <?php endforeach; ?>
           <div class="row">
-            <div class="col-md-3 ml-5 fixed-left bg-white" style="border-right: 2px solid gray; padding-right:0px; box-shadow:2px 2px 5px gray;z-index: 1;overflow-x:hidden;overflow-y: auto;height: auto;">
+            <div class="col-md-3 ml-5 fixed-left bg-white" style="border-right: 2px solid gray; padding-right:0px; box-shadow:2px 2px 5px gray; position: relative; height:100%;z-index:1; border-radius:7px;">
               <?php foreach($user->getAllFromTopicById($id) as $topic) : ?>
                 <h6 class="mb-3 ml-1 mt-3"><strong><?=ucwords($topic['topic'])?></strong></h6>
               
@@ -57,7 +57,7 @@
                 <?php endforeach;?>
             </div>
             <?php if($cls_id) : ?>
-              <div class="col-md-8 mr- ml-2 bg-white" style="padding-right:0px; box-shadow:2px 2px 5px gray">
+              <div class="col-md-8 mr- ml-2 bg-white" style="padding-right:0px; box-shadow:2px 2px 5px gray; border-radius:7px;">
                 <?php foreach ($user->courseDetails($id) as $class) :?>
                   <h6 class="mt-4">Learn <?=$class['class']?></h6>
                   <p class="pt-3"><?=$class['description']?></p>

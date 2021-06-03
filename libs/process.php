@@ -4,7 +4,7 @@
     
 
     $errors = array();
-    $_SESSION = [];
+    // $_SESSION = [];
 
     if (isset($_POST['register_button'])) {
         $error    = '';
@@ -13,6 +13,8 @@
         $token    = $_POST['token'];
         $email    = $db->escape($_POST['email']);
         $password = $db->escape($_POST['password']);
+        $checkbox = $db->escape($_POST['checkbox']);
+        $checkbox = str_replace($checkbox, 'agreed', $checkbox);
         $date     = date("yy/m/d");
         $status   = 0;
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -41,9 +43,13 @@
         // }
 
         if (empty($errors)) {
-            $r = $db->saveData(TBL_STUDENT, "entity_guid = uuid(), user_guid = '$token', surname = '$name', email = '$email', password = '$password', xdate = '$date', status = '$status'");
-            $_SESSION['success-message'] = "Registration successful !";
-            header("Location: login.php");
+            if (!empty($checkbox)) {
+                $r = $db->saveData(TBL_STUDENT, "entity_guid = uuid(), user_guid = '$token', surname = '$name', email = '$email', password = '$password', xdate = '$date', policy_check = '$checkbox', status = '$status'");
+                $_SESSION['success-message'] = "Registration successful !";
+                header("Location: login.php");
+            }else{
+                $errors['check-box'] = "Kindly check the box";
+            }
         }
     }
 
@@ -63,6 +69,7 @@
         }
 
         if ($emailCheck > 0) {
+
             // Set cookie
             // echo $_POST['checkbox'];exit; 
             if (!empty($_POST['checkbox'])) {

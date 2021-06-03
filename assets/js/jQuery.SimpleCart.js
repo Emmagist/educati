@@ -190,7 +190,7 @@
             for (var i in this.cart) {
                 if (this.cart[i].name === name && this.cart[i].subid === subid) {
                     this.cart[i].count++;
-                    var r = this.cart[i].sub_type; alert(r);
+                    this.cart[i].sub_type; //alert(r);
                     this.cart[i].price = price * this.cart[i].count;
                     this._saveCart();
                     return;

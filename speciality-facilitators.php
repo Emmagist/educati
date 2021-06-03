@@ -1,7 +1,7 @@
 <?php 
 
   require "libs/process.php";
-  $db->getLogin();
+  // $db->getLogin();
   require "inc/head.php";
   require "inc/header.php";
   require "inc/nav.php";

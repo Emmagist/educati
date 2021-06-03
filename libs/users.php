@@ -19,6 +19,11 @@
             return $db->selectData(TBL_CLASS, "*");
         }
 
+        public function getSchool(){
+            global $db;
+            return $db->selectData(TBL_SCHOOL, "*");
+        }
+
         public  function  getAllClassesBySchoolId($id){
             global  $db;
             $rows = [];
